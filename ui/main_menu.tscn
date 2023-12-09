@@ -1,0 +1,77 @@
+[gd_scene load_steps=14 format=3 uid="uid://ybv6avhh5gpg"]
+
+[ext_resource type="Texture2D" uid="uid://bg6m2m1hvw2hf" path="res://ui/images/background.png" id="1_iujm7"]
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_wyi7e"]
+[ext_resource type="Texture2D" uid="uid://wa8raoioc6sg" path="res://ui/images/new_game.png" id="2_42wdb"]
+[ext_resource type="Texture2D" uid="uid://cp8vbtbqmd76u" path="res://ui/images/new_game_hover.png" id="3_godfy"]
+[ext_resource type="Texture2D" uid="uid://cyt5u4wlfqlb5" path="res://ui/images/separator.png" id="4_07nmb"]
+[ext_resource type="PackedScene" uid="uid://55x8s8tr5ke5" path="res://ui/components/ai_button.tscn" id="4_kbhah"]
+[ext_resource type="Texture2D" uid="uid://c8grxqg0ypqva" path="res://ui/images/highscore.png" id="5_sas4v"]
+[ext_resource type="Texture2D" uid="uid://7r2kjnpar1hn" path="res://ui/images/highscore_hover.png" id="6_pb3qc"]
+[ext_resource type="Texture2D" uid="uid://djdjcgpxwehtb" path="res://ui/images/credits.png" id="7_6566i"]
+[ext_resource type="Texture2D" uid="uid://bpyw4hdgiyuhr" path="res://ui/images/credits_hover.png" id="8_njpln"]
+[ext_resource type="Texture2D" uid="uid://b33r3bap7ur20" path="res://ui/images/quit.png" id="9_e3885"]
+[ext_resource type="Texture2D" uid="uid://dq0l3mtockw75" path="res://ui/images/quit_hover.png" id="10_p4flp"]
+[ext_resource type="AudioStream" uid="uid://brk4ts1b0q1bu" path="res://ui/audio/menu_music.ogg" id="12_b73mu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wyi7e")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VFlowContainer" type="VFlowContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/VFlowContainer"]
+layout_mode = 2
+texture = ExtResource("1_iujm7")
+stretch_mode = 2
+
+[node name="MenuButtons" type="VFlowContainer" parent="CanvasLayer/VFlowContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+
+[node name="Separator" type="TextureRect" parent="CanvasLayer/VFlowContainer/MenuButtons"]
+layout_mode = 2
+texture = ExtResource("4_07nmb")
+
+[node name="NewGameButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+layout_mode = 2
+texture_normal = ExtResource("2_42wdb")
+texture_hover = ExtResource("3_godfy")
+
+[node name="HighscoreButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+layout_mode = 2
+texture_normal = ExtResource("5_sas4v")
+texture_hover = ExtResource("6_pb3qc")
+
+[node name="CreditsButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+layout_mode = 2
+texture_normal = ExtResource("7_6566i")
+texture_hover = ExtResource("8_njpln")
+
+[node name="QuitButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+layout_mode = 2
+texture_normal = ExtResource("9_e3885")
+texture_hover = ExtResource("10_p4flp")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_b73mu")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/VFlowContainer/MenuButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VFlowContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]

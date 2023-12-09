@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ohshekucitam"]
+
+[ext_resource type="Texture2D" uid="uid://bk5ef1g20mrxi" path="res://environment/space.png" id="1_g561l"]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_g561l")
+centered = false

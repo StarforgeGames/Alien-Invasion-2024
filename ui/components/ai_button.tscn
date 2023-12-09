@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://55x8s8tr5ke5"]
+
+[ext_resource type="AudioStream" uid="uid://jyb85fpwt7l6" path="res://ui/audio/button_press.wav" id="1_pnrf5"]
+[ext_resource type="Script" path="res://ui/components/ai_button.gd" id="1_xjxkm"]
+[ext_resource type="AudioStream" uid="uid://dlsrq05rnnumy" path="res://ui/audio/button_hover.wav" id="2_f5apb"]
+
+[node name="AIButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xjxkm")
+
+[node name="ButtonPressedPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_pnrf5")
+
+[node name="ButtonHoveredPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_f5apb")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
