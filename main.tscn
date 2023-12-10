@@ -1,15 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc6mqlygs3yae"]
+[gd_scene load_steps=2 format=3 uid="uid://dc6mqlygs3yae"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0ab17"]
-[ext_resource type="PackedScene" uid="uid://ybv6avhh5gpg" path="res://ui/main_menu.tscn" id="2_5fwga"]
-[ext_resource type="PackedScene" uid="uid://ohshekucitam" path="res://levels/world.tscn" id="3_05grj"]
 
 [node name="Node" type="Node"]
+process_mode = 3
 script = ExtResource("1_0ab17")
-
-[node name="MainMenu" parent="." instance=ExtResource("2_5fwga")]
-
-[node name="World" parent="." instance=ExtResource("3_05grj")]
-
-[connection signal="game_started" from="MainMenu" to="." method="_on_main_menu_game_started"]
-[connection signal="quit" from="MainMenu" to="." method="_on_main_menu_quit"]

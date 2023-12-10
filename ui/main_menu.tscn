@@ -21,11 +21,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_wyi7e")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_b73mu")
+volume_db = -5.0
+autoplay = true
 
-[node name="VFlowContainer" type="VFlowContainer" parent="CanvasLayer"]
+[node name="VFlowContainer" type="VFlowContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,43 +41,71 @@ grow_vertical = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/VFlowContainer"]
+[node name="Background" type="TextureRect" parent="VFlowContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 texture = ExtResource("1_iujm7")
-stretch_mode = 2
+expand_mode = 3
+stretch_mode = 4
 
-[node name="MenuButtons" type="VFlowContainer" parent="CanvasLayer/VFlowContainer"]
+[node name="BottomRow" type="HBoxContainer" parent="VFlowContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Separator" type="TextureRect" parent="VFlowContainer/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_07nmb")
+stretch_mode = 1
+
+[node name="MenuButtons" type="VFlowContainer" parent="VFlowContainer/BottomRow"]
 layout_mode = 2
 theme_override_constants/h_separation = 0
 
-[node name="Separator" type="TextureRect" parent="CanvasLayer/VFlowContainer/MenuButtons"]
+[node name="NewGameButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
 layout_mode = 2
-texture = ExtResource("4_07nmb")
-
-[node name="NewGameButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
-layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../QuitButton")
+focus_neighbor_right = NodePath("../HighscoreButton")
+focus_next = NodePath("../HighscoreButton")
+focus_previous = NodePath("../QuitButton")
 texture_normal = ExtResource("2_42wdb")
 texture_hover = ExtResource("3_godfy")
+stretch_mode = 4
 
-[node name="HighscoreButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+[node name="HighscoreButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
 layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../NewGameButton")
+focus_neighbor_right = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
+focus_previous = NodePath("../NewGameButton")
 texture_normal = ExtResource("5_sas4v")
 texture_hover = ExtResource("6_pb3qc")
+stretch_mode = 4
 
-[node name="CreditsButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+[node name="CreditsButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
 layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../HighscoreButton")
+focus_neighbor_right = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../HighscoreButton")
 texture_normal = ExtResource("7_6566i")
 texture_hover = ExtResource("8_njpln")
+stretch_mode = 4
 
-[node name="QuitButton" parent="CanvasLayer/VFlowContainer/MenuButtons" instance=ExtResource("4_kbhah")]
+[node name="QuitButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
 layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../CreditsButton")
+focus_neighbor_right = NodePath("../NewGameButton")
+focus_next = NodePath("../NewGameButton")
+focus_previous = NodePath("../CreditsButton")
 texture_normal = ExtResource("9_e3885")
 texture_hover = ExtResource("10_p4flp")
+stretch_mode = 4
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_b73mu")
-volume_db = -5.0
-autoplay = true
-
-[connection signal="pressed" from="CanvasLayer/VFlowContainer/MenuButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/VFlowContainer/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
