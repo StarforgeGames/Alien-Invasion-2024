@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b48qqc1xa2nfc"]
+[gd_scene load_steps=12 format=3 uid="uid://b48qqc1xa2nfc"]
 
-[ext_resource type="Texture2D" uid="uid://dj2ef3dcmjtaq" path="res://actors/player/player.png" id="1_8b2vr"]
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_i3lif"]
-[ext_resource type="Texture2D" uid="uid://8ohlarcljj6o" path="res://actors/player/player_death.png" id="2_itlre"]
-[ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/player/explosion.wav" id="4_uju03"]
-[ext_resource type="AudioStream" uid="uid://dex28mvwg50ka" path="res://actors/player/player_shot.wav" id="5_yjj1h"]
+[ext_resource type="PackedScene" uid="uid://bliwi4p2x0dfj" path="res://actors/common/laser_projectile/laser_projectile.tscn" id="2_qfntk"]
+[ext_resource type="Texture2D" uid="uid://dj2ef3dcmjtaq" path="res://actors/player/images/player.png" id="3_uhwhb"]
+[ext_resource type="Texture2D" uid="uid://8ohlarcljj6o" path="res://actors/player/images/player_death.png" id="4_5sgur"]
+[ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/player/audio/explosion.wav" id="4_f44tb"]
+[ext_resource type="AudioStream" uid="uid://dex28mvwg50ka" path="res://actors/player/audio/player_shot.wav" id="5_qfu3m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c47dl"]
 radius = 22.0
@@ -126,15 +127,16 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_i3lif")
+projectile_scene = ExtResource("2_qfntk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8b2vr")
+texture = ExtResource("3_uhwhb")
 hframes = 5
 vframes = 4
 
 [node name="DeathSprite" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_itlre")
+texture = ExtResource("4_5sgur")
 hframes = 4
 vframes = 4
 
@@ -152,10 +154,10 @@ libraries = {
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="DeathPlayer" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("4_uju03")
+stream = ExtResource("4_f44tb")
 
 [node name="FirePlayer" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("5_yjj1h")
+stream = ExtResource("5_qfu3m")
 
 [node name="Timers" type="Node" parent="."]
 

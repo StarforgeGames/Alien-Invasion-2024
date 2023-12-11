@@ -1,3 +1,4 @@
+class_name MainMenu
 extends Control
 
 
@@ -14,5 +15,5 @@ func _on_quit_button_pressed() -> void:
 	quit.emit()
 
 
-func _on_visibility_changed():
+func _on_visibility_changed() -> void:
 	$MenuMusic.stream_paused = not visible

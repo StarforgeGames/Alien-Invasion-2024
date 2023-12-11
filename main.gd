@@ -1,9 +1,9 @@
 extends Node
 
 
-@onready var _world_scene = load("res://levels/world.tscn")
+@export var world_scene: PackedScene
 
-var _world
+var _world: World
 
 
 func _ready():
@@ -19,7 +19,7 @@ func _start_game():
 	if _world:
 		_world.queue_free()
 
-	_world = _world_scene.instantiate()
+	_world = world_scene.instantiate() as World
 	add_child(_world)
 
 	

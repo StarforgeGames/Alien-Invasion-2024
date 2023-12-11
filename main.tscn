@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc6mqlygs3yae"]
+[gd_scene load_steps=3 format=3 uid="uid://dc6mqlygs3yae"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0ab17"]
+[ext_resource type="PackedScene" uid="uid://ohshekucitam" path="res://levels/world.tscn" id="2_jyq7o"]
 
 [node name="Node" type="Node"]
 process_mode = 3
 script = ExtResource("1_0ab17")
+world_scene = ExtResource("2_jyq7o")

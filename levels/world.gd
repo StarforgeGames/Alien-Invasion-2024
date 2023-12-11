@@ -1,8 +1,10 @@
+class_name World
 extends Node2D
 
 
-var _player_scene: PackedScene = preload("res://actors/player/player.tscn")
-var _player
+@export var _player_scene: PackedScene
+
+var _player: Player
 
 
 func _ready():
@@ -10,6 +12,8 @@ func _ready():
 
 
 func _spawn_player():
-	_player = _player_scene.instantiate()
+	assert(_player_scene)
+	_player = _player_scene.instantiate() as Player
 	_player.position = Vector2(512, 650)
+	_player.world = self
 	add_child(_player)

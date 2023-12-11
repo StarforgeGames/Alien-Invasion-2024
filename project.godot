@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Ui="*res://core/ui.tscn"
+Ui="*res://core/globals/ui.tscn"
 
 [display]
 

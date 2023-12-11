@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ohshekucitam"]
+[gd_scene load_steps=5 format=3 uid="uid://ohshekucitam"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_edkdc"]
-[ext_resource type="Texture2D" uid="uid://bk5ef1g20mrxi" path="res://environment/space.png" id="1_g561l"]
-[ext_resource type="AudioStream" uid="uid://k5m1xirkwe31" path="res://environment/ingame_music.ogg" id="3_w1jb8"]
+[ext_resource type="Texture2D" uid="uid://bk5ef1g20mrxi" path="res://environment/images/space.png" id="1_g561l"]
+[ext_resource type="PackedScene" uid="uid://b48qqc1xa2nfc" path="res://actors/player/player.tscn" id="2_u7r5c"]
+[ext_resource type="AudioStream" uid="uid://k5m1xirkwe31" path="res://environment/audio/ingame_music.ogg" id="3_w1jb8"]
 
 [node name="World" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_edkdc")
+_player_scene = ExtResource("2_u7r5c")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_g561l")
