@@ -3,7 +3,6 @@ extends Control
 
 
 signal game_started()
-signal quit()
 
 
 func _on_new_game_button_pressed() -> void:
@@ -12,7 +11,7 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_quit_button_pressed() -> void:
-	quit.emit()
+	get_tree().quit()
 
 
 func _on_visibility_changed() -> void:
