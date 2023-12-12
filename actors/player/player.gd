@@ -2,17 +2,29 @@ class_name Player
 extends CharacterBody2D
 
 
+signal died()
+
+
 ## The movement speed of the player.
 @export var speed: float = 400.0
-## The stats that configure the laser projectile.
-@export var projectile_data: ProjectileData
 
-## Reference to the world scene the game is played in.
-var world: World
+## Reference to the _world scene the game is played in.
+var _world: World
+var _is_dying = false
 var _can_fire: bool = true
+
+@onready var _projectile_spawner_component := $Components/ProjectileSpawnerComponent as ProjectileSpawnerComponent
+
+
+func post_init(world: World):
+	_world = world	
+	_projectile_spawner_component.world = world
 
 
 func _process(_delta) -> void:
+	if _is_dying:
+		return
+	
 	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = direction * speed
 
@@ -26,7 +38,7 @@ func fire() -> void:
 	if not _can_fire:
 		return
 
-	_spawn_projectile()
+	_projectile_spawner_component.spawn($MuzzleMarker.global_position)
 
 	$AnimationPlayer.play("fire")
 	$Audio/FirePlayer.play()
@@ -35,19 +47,15 @@ func fire() -> void:
 	$Timers/FiringCooldown.start()
 
 
-func _spawn_projectile() -> void:
-	assert(projectile_data)
-	assert(world)
-	
-	var projectile = projectile_data.scene.instantiate() as LaserProjectile
-	projectile.projectile_data = projectile_data
-	projectile.position = $MuzzleMarker.global_position
-	world.add_child(projectile)
-
-
 func _on_firing_cooldown_timeout() -> void:
 	_can_fire = true
 
 
 func _on_died() -> void:
-	pass # Replace with function body.
+	died.emit()
+	_is_dying = true
+
+	$AnimationPlayer.play("death")
+	await $AnimationPlayer.animation_finished
+
+	queue_free()

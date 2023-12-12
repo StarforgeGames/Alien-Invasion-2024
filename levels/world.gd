@@ -23,8 +23,16 @@ func _spawn_player() -> void:
 
 	_player = _player_scene.instantiate() as Player
 	_player.position = _player_start.global_position
-	_player.world = self
 	add_child(_player)
+	_player.post_init(self)
+
+
+func _on_player_died():
+	$PlayerRespawnTimer.start()
+
+
+func _on_player_respawn_timer_timeout():
+	_spawn_player()
 
 
 func _on_main_menu_restart_game() -> void:

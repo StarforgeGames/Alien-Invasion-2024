@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b48qqc1xa2nfc"]
+[gd_scene load_steps=14 format=3 uid="uid://b48qqc1xa2nfc"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_i3lif"]
 [ext_resource type="Resource" uid="uid://dv7nhd224de5x" path="res://actors/player/player_laser_projectile.tres" id="3_pmrgw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://8ohlarcljj6o" path="res://actors/player/images/player_death.png" id="4_5sgur"]
 [ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/player/audio/explosion.wav" id="4_f44tb"]
 [ext_resource type="AudioStream" uid="uid://dex28mvwg50ka" path="res://actors/player/audio/player_shot.wav" id="5_qfu3m"]
+[ext_resource type="Script" path="res://core/components/projectile_spawner_component.gd" id="7_fopvy"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="7_ub55h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c47dl"]
@@ -129,7 +130,6 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_i3lif")
-projectile_data = ExtResource("3_pmrgw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_uhwhb")
@@ -165,6 +165,10 @@ stream = ExtResource("5_qfu3m")
 
 [node name="HealthComponent" type="Node" parent="Components"]
 script = ExtResource("7_ub55h")
+
+[node name="ProjectileSpawnerComponent" type="Node" parent="Components"]
+script = ExtResource("7_fopvy")
+projectile_data = ExtResource("3_pmrgw")
 
 [node name="Timers" type="Node" parent="."]
 

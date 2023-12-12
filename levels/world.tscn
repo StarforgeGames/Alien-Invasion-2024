@@ -21,3 +21,8 @@ autoplay = true
 
 [node name="PlayerStart" type="Marker2D" parent="."]
 position = Vector2(512, 650)
+
+[node name="PlayerRespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]
