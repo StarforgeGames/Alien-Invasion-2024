@@ -21,8 +21,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource("1_wyi7e")
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
@@ -43,9 +41,7 @@ theme_override_constants/v_separation = 0
 
 [node name="Background" type="TextureRect" parent="VFlowContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 texture = ExtResource("1_iujm7")
-expand_mode = 3
 stretch_mode = 4
 
 [node name="BottomRow" type="HBoxContainer" parent="VFlowContainer"]
@@ -54,9 +50,8 @@ theme_override_constants/separation = 0
 
 [node name="Separator" type="TextureRect" parent="VFlowContainer/BottomRow"]
 layout_mode = 2
-size_flags_horizontal = 3
 texture = ExtResource("4_07nmb")
-stretch_mode = 1
+stretch_mode = 4
 
 [node name="MenuButtons" type="VFlowContainer" parent="VFlowContainer/BottomRow"]
 layout_mode = 2
