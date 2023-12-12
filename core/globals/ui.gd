@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 
+## The games' main menu.
 @export var main_menu: MainMenu
 
 

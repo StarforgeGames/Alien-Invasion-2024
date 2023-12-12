@@ -2,6 +2,7 @@ class_name MainMenu
 extends Control
 
 
+## Emitted when the game should be started.
 signal game_started()
 
 
