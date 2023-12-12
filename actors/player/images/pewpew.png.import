@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bm31mipj5k20j"
-path="res://.godot/imported/pewpew.png-3f37cfe6dc57ca1b425ba0a1b823f91a.ctex"
+path="res://.godot/imported/pewpew.png-1af83432ccd8e65cb620594d3c1c468d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/common/laser_projectile/images/pewpew.png"
-dest_files=["res://.godot/imported/pewpew.png-3f37cfe6dc57ca1b425ba0a1b823f91a.ctex"]
+source_file="res://actors/player/images/pewpew.png"
+dest_files=["res://.godot/imported/pewpew.png-1af83432ccd8e65cb620594d3c1c468d.ctex"]
 
 [params]
 

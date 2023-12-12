@@ -2,9 +2,12 @@ class_name Player
 extends CharacterBody2D
 
 
+## The movement speed of the player.
 @export var speed: float = 400.0
-@export var projectile_scene: PackedScene
+## The stats that configure the laser projectile.
+@export var projectile_data: ProjectileData
 
+## Reference to the world scene the game is played in.
 var world: World
 var _can_fire: bool = true
 
@@ -33,13 +36,18 @@ func fire() -> void:
 
 
 func _spawn_projectile() -> void:
-	assert(projectile_scene)
+	assert(projectile_data)
 	assert(world)
 	
-	var projectile = projectile_scene.instantiate() as LaserProjectile
+	var projectile = projectile_data.scene.instantiate() as LaserProjectile
+	projectile.projectile_data = projectile_data
 	projectile.position = $MuzzleMarker.global_position
 	world.add_child(projectile)
 
 
 func _on_firing_cooldown_timeout() -> void:
 	_can_fire = true
+
+
+func _on_died() -> void:
+	pass # Replace with function body.

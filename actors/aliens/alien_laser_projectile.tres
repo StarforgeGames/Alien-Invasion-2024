@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ProjectileData" load_steps=4 format=3 uid="uid://b00rlmfvqg1pl"]
+
+[ext_resource type="PackedScene" uid="uid://bliwi4p2x0dfj" path="res://actors/common/laser_projectile/laser_projectile.tscn" id="1_6sk6j"]
+[ext_resource type="Script" path="res://actors/common/laser_projectile/projectile_data.gd" id="1_y82xe"]
+[ext_resource type="Texture2D" uid="uid://bai1at8f7ytnn" path="res://actors/aliens/images/pewpew_alien.png" id="2_3fx1y"]
+
+[resource]
+script = ExtResource("1_y82xe")
+scene = ExtResource("1_6sk6j")
+sprite = ExtResource("2_3fx1y")
+speed = 1000
+direction = Vector2(0, -1)
+damage = 1.0
