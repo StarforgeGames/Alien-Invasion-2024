@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtnok2g12os47"]
+
+[ext_resource type="PackedScene" uid="uid://dwm2amk7yu3v2" path="res://actors/aliens/alien.tscn" id="1_q3uxq"]
+[ext_resource type="Texture2D" uid="uid://c2ygjf5btopr0" path="res://actors/aliens/images/hammerhead.png" id="2_2h43a"]
+[ext_resource type="AudioStream" uid="uid://d0wgnwmhk7dkx" path="res://actors/aliens/audio/alien_hammerhead_death.wav" id="3_nt5e5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7q7ba"]
+radius = 44.1022
+
+[sub_resource type="Animation" id="Animation_fou42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j224v"]
+resource_name = "idle"
+length = 2.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 35]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ucfiq"]
+_data = {
+"RESET": SubResource("Animation_fou42"),
+"idle": SubResource("Animation_j224v")
+}
+
+[node name="Hammerhead" instance=ExtResource("1_q3uxq")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_2h43a")
+hframes = 4
+vframes = 9
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_7q7ba")
+
+[node name="MuzzleMarker" parent="." index="2"]
+position = Vector2(0, 41)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ucfiq")
+}
+
+[node name="DeathSound" parent="Audio" index="1"]
+stream = ExtResource("3_nt5e5")
+
+[node name="AttackComponent" parent="Components" index="2"]
+_cooldown_time = 2.0

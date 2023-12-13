@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj7wwhpctswa2"]
+
+[ext_resource type="PackedScene" uid="uid://dwm2amk7yu3v2" path="res://actors/aliens/alien.tscn" id="1_hicra"]
+[ext_resource type="Texture2D" uid="uid://bafe1hqd1q6ok" path="res://actors/aliens/images/ray.png" id="2_hsxlc"]
+[ext_resource type="AudioStream" uid="uid://c5wsdqvti7x1l" path="res://actors/aliens/audio/alien_ray_death.wav" id="3_u0ovc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8v15f"]
+radius = 18.0
+height = 76.0
+
+[sub_resource type="Animation" id="Animation_fou42"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j224v"]
+resource_name = "idle"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ucfiq"]
+_data = {
+"RESET": SubResource("Animation_fou42"),
+"idle": SubResource("Animation_j224v")
+}
+
+[node name="Ray" instance=ExtResource("1_hicra")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_hsxlc")
+hframes = 4
+vframes = 3
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_8v15f")
+
+[node name="MuzzleMarker" parent="." index="2"]
+position = Vector2(0, 41)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ucfiq")
+}
+
+[node name="DeathSound" parent="Audio" index="1"]
+stream = ExtResource("3_u0ovc")
+
+[node name="AttackComponent" parent="Components" index="2"]
+_cooldown_time = 3.0
+
+[node name="AttackTimer" parent="Timers" index="0"]
+wait_time = 5.0

@@ -21,8 +21,10 @@ func attack(spawn_position: Vector2) -> void:
 
 	_projectile_spawner_component.spawn(spawn_position)
 
-	_animation_player.play(_animation_name)
-	_attack_sound.play()
+	if _animation_player:
+		_animation_player.play(_animation_name)
+	if _attack_sound:
+		_attack_sound.play()
 
 	_can_attack = false
 	$AttackCooldown.start()

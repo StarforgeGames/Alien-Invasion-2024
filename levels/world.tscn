@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ohshekucitam"]
+[gd_scene load_steps=8 format=3 uid="uid://ohshekucitam"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_edkdc"]
 [ext_resource type="Texture2D" uid="uid://bk5ef1g20mrxi" path="res://environment/images/space.png" id="1_g561l"]
 [ext_resource type="PackedScene" uid="uid://b48qqc1xa2nfc" path="res://actors/player/player.tscn" id="2_u7r5c"]
 [ext_resource type="AudioStream" uid="uid://k5m1xirkwe31" path="res://environment/audio/ingame_music.ogg" id="3_w1jb8"]
+[ext_resource type="PackedScene" uid="uid://dtnok2g12os47" path="res://actors/aliens/hammerhead.tscn" id="5_a1o6t"]
+[ext_resource type="PackedScene" uid="uid://bxmjug1c2hhdv" path="res://actors/aliens/pincher.tscn" id="6_twdh2"]
+[ext_resource type="PackedScene" uid="uid://cj7wwhpctswa2" path="res://actors/aliens/ray.tscn" id="7_4ywqn"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("_player_start")]
 process_mode = 1
@@ -18,6 +21,17 @@ centered = false
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_w1jb8")
 autoplay = true
+
+[node name="Aliens" type="Node2D" parent="."]
+
+[node name="Hammerhead" parent="Aliens" instance=ExtResource("5_a1o6t")]
+position = Vector2(316, 245)
+
+[node name="Pincher" parent="Aliens" instance=ExtResource("6_twdh2")]
+position = Vector2(421, 246)
+
+[node name="Ray" parent="Aliens" instance=ExtResource("7_4ywqn")]
+position = Vector2(494, 243)
 
 [node name="PlayerStart" type="Marker2D" parent="."]
 position = Vector2(512, 650)

@@ -15,6 +15,9 @@ func _ready() -> void:
 	Ui.main_menu.game_started.connect(_on_main_menu_restart_game)
 
 	_spawn_player()
+	$Aliens/Hammerhead.post_init(self)
+	$Aliens/Pincher.post_init(self)
+	$Aliens/Ray.post_init(self)
 
 
 func _spawn_player() -> void:

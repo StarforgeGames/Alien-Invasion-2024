@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwm2amk7yu3v2"]
+
+[ext_resource type="Script" path="res://core/components/projectile_spawner_component.gd" id="1_7gyi2"]
+[ext_resource type="Script" path="res://actors/aliens/alien.gd" id="1_18omt"]
+[ext_resource type="Script" path="res://core/components/health_component.gd" id="1_kshyc"]
+[ext_resource type="AudioStream" uid="uid://c84ufna086j5l" path="res://actors/aliens/audio/alien_shot.wav" id="2_27l1e"]
+[ext_resource type="Resource" uid="uid://b00rlmfvqg1pl" path="res://actors/aliens/alien_laser_projectile.tres" id="2_wnahc"]
+[ext_resource type="PackedScene" uid="uid://n587cr1psc8b" path="res://core/components/attack_component.tscn" id="5_2p0gu"]
+
+[node name="Alien" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_18omt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="MuzzleMarker" type="Marker2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("2_27l1e")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="Components" type="Node" parent="."]
+
+[node name="HealthComponent" type="Node" parent="Components"]
+script = ExtResource("1_kshyc")
+
+[node name="ProjectileSpawnerComponent" type="Node" parent="Components"]
+script = ExtResource("1_7gyi2")
+projectile_data = ExtResource("2_wnahc")
+
+[node name="AttackComponent" parent="Components" node_paths=PackedStringArray("_attack_sound", "_projectile_spawner_component") instance=ExtResource("5_2p0gu")]
+_attack_sound = NodePath("../../Audio/AttackSound")
+_projectile_spawner_component = NodePath("../ProjectileSpawnerComponent")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 2.0
+autostart = true
+
+[node name="IdleTimer" type="Timer" parent="Timers"]
+autostart = true
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/IdleTimer" to="." method="_on_idle_timer_timeout"]
