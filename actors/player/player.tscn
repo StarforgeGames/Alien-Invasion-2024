@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b48qqc1xa2nfc"]
+[gd_scene load_steps=15 format=3 uid="uid://b48qqc1xa2nfc"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_i3lif"]
 [ext_resource type="Resource" uid="uid://dv7nhd224de5x" path="res://actors/player/player_laser_projectile.tres" id="3_pmrgw"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dex28mvwg50ka" path="res://actors/player/audio/player_shot.wav" id="5_qfu3m"]
 [ext_resource type="Script" path="res://core/components/projectile_spawner_component.gd" id="7_fopvy"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="7_ub55h"]
+[ext_resource type="PackedScene" uid="uid://n587cr1psc8b" path="res://core/components/attack_component.tscn" id="9_kldy5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c47dl"]
 radius = 22.0
@@ -64,6 +65,22 @@ tracks/3/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_s0jlp"]
+resource_name = "attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 19]
+}
+
 [sub_resource type="Animation" id="Animation_b5f5y"]
 resource_name = "death"
 length = 0.5
@@ -104,27 +121,11 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_s0jlp"]
-resource_name = "fire"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 19]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_es6te"]
 _data = {
 "RESET": SubResource("Animation_ptute"),
-"death": SubResource("Animation_b5f5y"),
-"fire": SubResource("Animation_s0jlp")
+"attack": SubResource("Animation_s0jlp"),
+"death": SubResource("Animation_b5f5y")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -155,11 +156,11 @@ position = Vector2(0, -48)
 
 [node name="Audio" type="Node2D" parent="."]
 
-[node name="DeathPlayer" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("4_f44tb")
-
-[node name="FirePlayer" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("5_qfu3m")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("4_f44tb")
 
 [node name="Components" type="Node" parent="."]
 
@@ -170,9 +171,9 @@ script = ExtResource("7_ub55h")
 script = ExtResource("7_fopvy")
 projectile_data = ExtResource("3_pmrgw")
 
-[node name="Timers" type="Node" parent="."]
-
-[node name="FiringCooldown" type="Timer" parent="Timers"]
+[node name="AttackComponent" parent="Components" node_paths=PackedStringArray("_animation_player", "_attack_sound", "_projectile_spawner_component") instance=ExtResource("9_kldy5")]
+_animation_player = NodePath("../../AnimationPlayer")
+_attack_sound = NodePath("../../Audio/AttackSound")
+_projectile_spawner_component = NodePath("../ProjectileSpawnerComponent")
 
 [connection signal="died" from="Components/HealthComponent" to="." method="_on_died"]
-[connection signal="timeout" from="Timers/FiringCooldown" to="." method="_on_firing_cooldown_timeout"]

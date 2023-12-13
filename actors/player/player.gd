@@ -11,9 +11,9 @@ signal died()
 ## Reference to the _world scene the game is played in.
 var _world: World
 var _is_dying = false
-var _can_fire: bool = true
 
 @onready var _projectile_spawner_component := $Components/ProjectileSpawnerComponent as ProjectileSpawnerComponent
+@onready var _attack_component := $Components/AttackComponent as AttackComponent
 
 
 func post_init(world: World):
@@ -21,34 +21,16 @@ func post_init(world: World):
 	_projectile_spawner_component.world = world
 
 
-func _process(_delta) -> void:
+func _physics_process(_delta) -> void:
 	if _is_dying:
 		return
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = direction * speed
-
 	move_and_slide()
 
-	if Input.is_action_pressed("fire"):
-		fire()
-
-
-func fire() -> void:
-	if not _can_fire:
-		return
-
-	_projectile_spawner_component.spawn($MuzzleMarker.global_position)
-
-	$AnimationPlayer.play("fire")
-	$Audio/FirePlayer.play()
-
-	_can_fire = false
-	$Timers/FiringCooldown.start()
-
-
-func _on_firing_cooldown_timeout() -> void:
-	_can_fire = true
+	if Input.is_action_pressed("attack"):
+		_attack_component.attack($MuzzleMarker.global_position)
 
 
 func _on_died() -> void:
@@ -56,6 +38,7 @@ func _on_died() -> void:
 	_is_dying = true
 
 	$AnimationPlayer.play("death")
+	$Audio/DeathSound.play()
 	await $AnimationPlayer.animation_finished
 
 	queue_free()
