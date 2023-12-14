@@ -3,6 +3,8 @@ extends Node
 
 
 ## Emitted when the health reaches 0 and the owning actor dies.
+signal damaged(new_health: float)
+## Emitted when the health reaches 0 and the owning actor dies.
 signal died()
 
 ## The maximum amount of health the owner can have.
@@ -14,6 +16,9 @@ var current_health: float:
 	get:
 		return _current_health
 	set(value):
+		if _current_health > value:			
+			damaged.emit(value)
+
 		_current_health = value
 
 		if _current_health <= 0:
@@ -22,7 +27,3 @@ var current_health: float:
 
 func _ready():
 	current_health = max_health
-
-
-func take_damage(damage: float) -> void:
-	current_health = max(current_health - damage, 0)

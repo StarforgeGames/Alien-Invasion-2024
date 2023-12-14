@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://d0wgnwmhk7dkx" path="res://actors/aliens/audio/alien_hammerhead_death.wav" id="3_nt5e5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7q7ba"]
-radius = 44.1022
+radius = 40.0
 
 [sub_resource type="Animation" id="Animation_fou42"]
 length = 0.001

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdkesny0mijbi"]
+
+[ext_resource type="PackedScene" uid="uid://dy2x6uiwavnxc" path="res://actors/fortification/fortification_element.tscn" id="1_3630r"]
+
+[node name="Fortification" type="Node2D"]
+
+[node name="Elements" type="Node2D" parent="."]
+
+[node name="FortificationElement" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(-33, -10)
+
+[node name="FortificationElement2" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(-33, -32)
+
+[node name="FortificationElement3" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(-33, -54)
+
+[node name="FortificationElement4" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(-11, -32)
+
+[node name="FortificationElement5" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(-11, -54)
+
+[node name="FortificationElement6" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(11, -32)
+
+[node name="FortificationElement7" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(11, -54)
+
+[node name="FortificationElement8" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(33, -54)
+
+[node name="FortificationElement9" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(33, -32)
+
+[node name="FortificationElement10" parent="Elements" instance=ExtResource("1_3630r")]
+position = Vector2(33, -10)

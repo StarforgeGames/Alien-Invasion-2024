@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ohshekucitam"]
+[gd_scene load_steps=9 format=3 uid="uid://ohshekucitam"]
 
 [ext_resource type="Script" path="res://levels/world.gd" id="1_edkdc"]
 [ext_resource type="Texture2D" uid="uid://bk5ef1g20mrxi" path="res://environment/images/space.png" id="1_g561l"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnok2g12os47" path="res://actors/aliens/hammerhead.tscn" id="5_a1o6t"]
 [ext_resource type="PackedScene" uid="uid://bxmjug1c2hhdv" path="res://actors/aliens/pincher.tscn" id="6_twdh2"]
 [ext_resource type="PackedScene" uid="uid://cj7wwhpctswa2" path="res://actors/aliens/ray.tscn" id="7_4ywqn"]
+[ext_resource type="PackedScene" uid="uid://bdkesny0mijbi" path="res://actors/fortification/fortification.tscn" id="8_guqkh"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("_player_start")]
 process_mode = 1
@@ -32,6 +33,20 @@ position = Vector2(421, 246)
 
 [node name="Ray" parent="Aliens" instance=ExtResource("7_4ywqn")]
 position = Vector2(494, 243)
+
+[node name="Fortifications" type="Node2D" parent="."]
+
+[node name="Fortification" parent="Fortifications" instance=ExtResource("8_guqkh")]
+position = Vector2(204, 575)
+
+[node name="Fortification2" parent="Fortifications" instance=ExtResource("8_guqkh")]
+position = Vector2(408, 575)
+
+[node name="Fortification3" parent="Fortifications" instance=ExtResource("8_guqkh")]
+position = Vector2(612, 575)
+
+[node name="Fortification4" parent="Fortifications" instance=ExtResource("8_guqkh")]
+position = Vector2(816, 575)
 
 [node name="PlayerStart" type="Marker2D" parent="."]
 position = Vector2(512, 650)
