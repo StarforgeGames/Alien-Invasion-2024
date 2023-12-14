@@ -10,9 +10,11 @@ extends Node
 
 var _can_attack: bool = true
 
+@onready var _attack_cooldown := $AttackCooldown as Timer
+
 
 func _ready():
-	$AttackCooldown.wait_time = _cooldown_time
+	_attack_cooldown.wait_time = _cooldown_time
 
 
 func attack(spawn_position: Vector2) -> void:
@@ -27,7 +29,7 @@ func attack(spawn_position: Vector2) -> void:
 		_attack_sound.play()
 
 	_can_attack = false
-	$AttackCooldown.start()
+	_attack_cooldown.start()
 
 
 func _on_attack_cooldown_timeout() -> void:

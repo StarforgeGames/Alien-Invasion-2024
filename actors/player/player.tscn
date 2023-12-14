@@ -169,10 +169,12 @@ script = ExtResource("7_ub55h")
 
 [node name="ProjectileSpawnerComponent" type="Node" parent="Components"]
 script = ExtResource("7_fopvy")
-projectile_data = ExtResource("3_pmrgw")
+_projectile_data = ExtResource("3_pmrgw")
 
 [node name="AttackComponent" parent="Components" node_paths=PackedStringArray("_animation_player", "_attack_sound", "_projectile_spawner_component") instance=ExtResource("9_kldy5")]
+_cooldown_time = 1.0
 _animation_player = NodePath("../../AnimationPlayer")
+_animation_name = &"attack"
 _attack_sound = NodePath("../../Audio/AttackSound")
 _projectile_spawner_component = NodePath("../ProjectileSpawnerComponent")
 
