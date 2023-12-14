@@ -37,19 +37,19 @@ position = Vector2(494, 243)
 [node name="Fortifications" type="Node2D" parent="."]
 
 [node name="Fortification" parent="Fortifications" instance=ExtResource("8_guqkh")]
-position = Vector2(204, 575)
+position = Vector2(204, 600)
 
 [node name="Fortification2" parent="Fortifications" instance=ExtResource("8_guqkh")]
-position = Vector2(408, 575)
+position = Vector2(408, 600)
 
 [node name="Fortification3" parent="Fortifications" instance=ExtResource("8_guqkh")]
-position = Vector2(612, 575)
+position = Vector2(612, 600)
 
 [node name="Fortification4" parent="Fortifications" instance=ExtResource("8_guqkh")]
-position = Vector2(816, 575)
+position = Vector2(816, 600)
 
 [node name="PlayerStart" type="Marker2D" parent="."]
-position = Vector2(512, 650)
+position = Vector2(512, 675)
 
 [node name="PlayerRespawnTimer" type="Timer" parent="."]
 wait_time = 2.0

@@ -37,12 +37,6 @@ func _physics_process(_delta: float) -> void:
 	if _is_dying:
 		return
 
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * _speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, _speed)
-
 	move_and_slide()
 
 
@@ -68,5 +62,5 @@ func _on_died() -> void:
 
 	_death_sound.play()
 	await _death_sound.finished
-	
+
 	queue_free()

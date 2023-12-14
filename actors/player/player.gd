@@ -23,8 +23,6 @@ var _is_dying = false
 func _ready():
 	_projectile_spawner_component.world = Game.world
 
-	_health_component.connect("died", _on_died)
-
 
 func _physics_process(_delta) -> void:
 	if _is_dying:

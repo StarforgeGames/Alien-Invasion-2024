@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b48qqc1xa2nfc"]
+[gd_scene load_steps=16 format=3 uid="uid://b48qqc1xa2nfc"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_i3lif"]
 [ext_resource type="Resource" uid="uid://dv7nhd224de5x" path="res://actors/player/player_laser_projectile.tres" id="3_pmrgw"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://core/components/projectile_spawner_component.gd" id="7_fopvy"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="7_ub55h"]
 [ext_resource type="PackedScene" uid="uid://n587cr1psc8b" path="res://core/components/attack_component.tscn" id="9_kldy5"]
+[ext_resource type="Script" path="res://core/components/position_clamp_component.gd" id="10_3noaj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c47dl"]
 radius = 22.0
@@ -172,10 +173,13 @@ script = ExtResource("7_fopvy")
 _projectile_data = ExtResource("3_pmrgw")
 
 [node name="AttackComponent" parent="Components" node_paths=PackedStringArray("_animation_player", "_attack_sound", "_projectile_spawner_component") instance=ExtResource("9_kldy5")]
-_cooldown_time = 1.0
 _animation_player = NodePath("../../AnimationPlayer")
-_animation_name = &"attack"
 _attack_sound = NodePath("../../Audio/AttackSound")
 _projectile_spawner_component = NodePath("../ProjectileSpawnerComponent")
+
+[node name="PositionClampComponent" type="Node" parent="Components" node_paths=PackedStringArray("actor")]
+script = ExtResource("10_3noaj")
+actor = NodePath("../..")
+margin = 25.0
 
 [connection signal="died" from="Components/HealthComponent" to="." method="_on_died"]
