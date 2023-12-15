@@ -12,3 +12,8 @@ extends Resource
 @export var direction := Vector2.UP
 ## The amount of damage inflicted by this projectile
 @export var damage: float = 1.0
+
+## The collision layer to use for the projectile.
+@export_flags_2d_physics var collision_layer
+## The collision mask to use for the projectile.
+@export_flags_2d_physics var collision_mask

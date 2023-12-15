@@ -68,6 +68,3 @@ stream = ExtResource("3_huh53")
 
 [node name="AttackComponent" parent="Components" index="2"]
 _cooldown_time = 3.0
-
-[node name="AttackTimer" parent="Timers" index="0"]
-wait_time = 3.0

@@ -31,6 +31,12 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="AlienInvasion2024"
 
+[file_customization]
+
+folder_colors={
+"res://raw/": "gray"
+}
+
 [input]
 
 move_left={
@@ -62,7 +68,6 @@ toggle_pause_menu={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Aliens"
 2d_physics/layer_3="Fortifications"
-2d_physics/layer_4="Projectiles"
 
 [rendering]
 

@@ -16,6 +16,8 @@ func spawn(position: Vector2) -> LaserProjectile:
 	var projectile = _projectile_data.scene.instantiate() as LaserProjectile
 	projectile.projectile_data = _projectile_data
 	projectile.position = position
+	projectile.collision_layer = _projectile_data.collision_layer
+	projectile.collision_mask = _projectile_data.collision_mask
 	world.add_child(projectile)
 
 	return projectile

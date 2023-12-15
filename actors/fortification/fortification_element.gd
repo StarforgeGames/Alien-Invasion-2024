@@ -14,7 +14,6 @@ func _on_died() -> void:
 
 
 func _on_damaged(new_health: float) -> void:
-	print("damaged, new health: " + str(new_health))
 	match new_health:
 		1.0:
 			_sprite.frame = 2
