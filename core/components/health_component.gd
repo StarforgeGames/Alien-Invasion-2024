@@ -25,5 +25,5 @@ var current_health: float:
 			died.emit()
 
 
-func _ready():
+func _ready() -> void:
 	current_health = max_health

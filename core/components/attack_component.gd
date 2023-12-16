@@ -13,7 +13,7 @@ var _can_attack: bool = true
 @onready var _attack_cooldown := $AttackCooldown as Timer
 
 
-func _ready():
+func _ready() -> void:
 	_attack_cooldown.wait_time = _cooldown_time
 
 
