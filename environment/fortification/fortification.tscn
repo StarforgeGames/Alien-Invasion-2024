@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdkesny0mijbi"]
 
-[ext_resource type="PackedScene" uid="uid://dy2x6uiwavnxc" path="res://actors/fortification/fortification_element.tscn" id="1_3630r"]
+[ext_resource type="PackedScene" uid="uid://dy2x6uiwavnxc" path="res://environment/fortification/fortification_element.tscn" id="1_3630r"]
 
 [node name="Fortification" type="Node2D"]
 

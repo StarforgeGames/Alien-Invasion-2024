@@ -1,238 +1,215 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbf0gpysgrva0"]
+[gd_scene load_steps=6 format=3 uid="uid://cbf0gpysgrva0"]
 
 [ext_resource type="Script" path="res://actors/aliens/alien_fleet.gd" id="1_d50rn"]
 [ext_resource type="PackedScene" uid="uid://dtnok2g12os47" path="res://actors/aliens/hammerhead.tscn" id="2_x7oud"]
 [ext_resource type="PackedScene" uid="uid://bxmjug1c2hhdv" path="res://actors/aliens/pincher.tscn" id="4_532j7"]
+[ext_resource type="PackedScene" uid="uid://c7q4rw16p5pj2" path="res://core/components/random_attack_component.tscn" id="5_edvp3"]
 [ext_resource type="PackedScene" uid="uid://cj7wwhpctswa2" path="res://actors/aliens/ray.tscn" id="5_pib5s"]
 
 [node name="AlienFleet" type="Node2D"]
 script = ExtResource("1_d50rn")
-_speed = 50.0
+
+[node name="Components" type="Node" parent="."]
+
+[node name="HammerheadRandomAttack" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_edvp3")]
+parent = NodePath("../../Hammerheads")
+_attack_cooldown_min = 4.0
+_attack_cooldown_max = 7.0
+
+[node name="PincherRandomAttack" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_edvp3")]
+parent = NodePath("../../Pinchers")
+_attack_cooldown_min = 3.0
+_attack_cooldown_max = 6.0
+
+[node name="RayRandomAttackComponent" parent="Components" node_paths=PackedStringArray("parent") instance=ExtResource("5_edvp3")]
+parent = NodePath("../../Rays")
+_attack_cooldown_min = 2.0
+_attack_cooldown_max = 5.0
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="HammerheadAttackCooldown" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="PincherAttackCooldown" type="Timer" parent="Timers"]
+wait_time = 2.0
+autostart = true
+
+[node name="RayAttackCooldown" type="Timer" parent="Timers"]
+wait_time = 3.0
+autostart = true
 
 [node name="Hammerheads" type="Node2D" parent="."]
-position = Vector2(17, 0)
 
 [node name="Hammerhead" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(23, 377)
-collision_mask = 13
+position = Vector2(40, 378)
 
 [node name="Hammerhead2" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(115, 377)
-collision_mask = 13
+position = Vector2(133, 378)
 
 [node name="Hammerhead3" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(207, 377)
-collision_mask = 13
+position = Vector2(226, 378)
 
 [node name="Hammerhead4" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(299, 377)
-collision_mask = 13
+position = Vector2(319, 378)
 
 [node name="Hammerhead5" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(391, 377)
-collision_mask = 13
+position = Vector2(412, 378)
 
 [node name="Hammerhead6" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(483, 377)
-collision_mask = 13
+position = Vector2(505, 378)
 
 [node name="Hammerhead7" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(575, 377)
-collision_mask = 13
+position = Vector2(598, 378)
 
 [node name="Hammerhead8" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(667, 377)
-collision_mask = 13
+position = Vector2(691, 378)
 
 [node name="Hammerhead9" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(23, 292)
-collision_mask = 13
+position = Vector2(40, 293)
 
 [node name="Hammerhead10" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(115, 292)
-collision_mask = 13
+position = Vector2(133, 293)
 
 [node name="Hammerhead11" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(207, 292)
-collision_mask = 13
+position = Vector2(226, 293)
 
 [node name="Hammerhead12" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(299, 292)
-collision_mask = 13
+position = Vector2(319, 293)
 
 [node name="Hammerhead13" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(391, 292)
-collision_mask = 13
+position = Vector2(412, 293)
 
 [node name="Hammerhead14" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(483, 292)
-collision_mask = 13
+position = Vector2(505, 293)
 
 [node name="Hammerhead15" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(575, 292)
-collision_mask = 13
+position = Vector2(598, 293)
 
 [node name="Hammerhead16" parent="Hammerheads" instance=ExtResource("2_x7oud")]
-position = Vector2(667, 292)
-collision_mask = 13
+position = Vector2(691, 293)
 
 [node name="Pinchers" type="Node2D" parent="."]
 
 [node name="Pincher" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(40, 207)
-collision_mask = 13
+position = Vector2(40, 208)
 
 [node name="Pincher2" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(99, 207)
-collision_mask = 13
+position = Vector2(99, 208)
 
 [node name="Pincher3" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(158, 207)
-collision_mask = 13
+position = Vector2(158, 208)
 
 [node name="Pincher4" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(217, 207)
-collision_mask = 13
+position = Vector2(217, 208)
 
 [node name="Pincher5" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(276, 207)
-collision_mask = 13
+position = Vector2(276, 208)
 
 [node name="Pincher6" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(335, 207)
-collision_mask = 13
+position = Vector2(335, 208)
 
 [node name="Pincher7" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(394, 207)
-collision_mask = 13
+position = Vector2(394, 208)
 
 [node name="Pincher8" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(453, 207)
-collision_mask = 13
+position = Vector2(453, 208)
 
 [node name="Pincher9" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(512, 207)
-collision_mask = 13
+position = Vector2(512, 208)
 
 [node name="Pincher10" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(571, 207)
-collision_mask = 13
+position = Vector2(571, 208)
 
 [node name="Pincher11" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(630, 207)
-collision_mask = 13
+position = Vector2(630, 208)
 
 [node name="Pincher12" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(689, 207)
-collision_mask = 13
+position = Vector2(689, 208)
 
 [node name="Pincher13" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(40, 122)
-collision_mask = 13
+position = Vector2(40, 123)
 
 [node name="Pincher14" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(99, 122)
-collision_mask = 13
+position = Vector2(99, 123)
 
 [node name="Pincher15" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(158, 122)
-collision_mask = 13
+position = Vector2(158, 123)
 
 [node name="Pincher16" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(217, 122)
-collision_mask = 13
+position = Vector2(217, 123)
 
 [node name="Pincher17" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(276, 122)
-collision_mask = 13
+position = Vector2(276, 123)
 
 [node name="Pincher18" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(335, 122)
-collision_mask = 13
+position = Vector2(335, 123)
 
 [node name="Pincher19" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(394, 122)
-collision_mask = 13
+position = Vector2(394, 123)
 
 [node name="Pincher20" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(453, 122)
-collision_mask = 13
+position = Vector2(453, 123)
 
 [node name="Pincher21" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(512, 122)
-collision_mask = 13
+position = Vector2(512, 123)
 
 [node name="Pincher22" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(571, 122)
-collision_mask = 13
+position = Vector2(571, 123)
 
 [node name="Pincher23" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(630, 122)
-collision_mask = 13
+position = Vector2(630, 123)
 
 [node name="Pincher24" parent="Pinchers" instance=ExtResource("4_532j7")]
-position = Vector2(689, 122)
-collision_mask = 13
+position = Vector2(689, 123)
 
 [node name="Rays" type="Node2D" parent="."]
-position = Vector2(-4, 0)
 
 [node name="Ray" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(40, 37)
-collision_mask = 13
+position = Vector2(40, 38)
 
 [node name="Ray2" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(87, 37)
-collision_mask = 13
+position = Vector2(86.5, 38)
 
 [node name="Ray3" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(134, 37)
-collision_mask = 13
+position = Vector2(133, 38)
 
 [node name="Ray4" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(181, 37)
-collision_mask = 13
+position = Vector2(179.5, 38)
 
 [node name="Ray5" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(228, 37)
-collision_mask = 13
+position = Vector2(226, 38)
 
 [node name="Ray6" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(275, 37)
-collision_mask = 13
+position = Vector2(272.5, 38)
 
 [node name="Ray7" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(322, 37)
-collision_mask = 13
+position = Vector2(319, 38)
 
 [node name="Ray8" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(369, 37)
-collision_mask = 13
+position = Vector2(365.5, 38)
 
 [node name="Ray9" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(416, 37)
-collision_mask = 13
+position = Vector2(412, 38)
 
 [node name="Ray10" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(463, 37)
-collision_mask = 13
+position = Vector2(458.5, 38)
 
 [node name="Ray11" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(510, 37)
-collision_mask = 13
+position = Vector2(505, 38)
 
 [node name="Ray12" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(557, 37)
-collision_mask = 13
+position = Vector2(551.5, 38)
 
 [node name="Ray13" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(604, 37)
-collision_mask = 13
+position = Vector2(598, 38)
 
 [node name="Ray14" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(651, 37)
-collision_mask = 13
+position = Vector2(644.5, 38)
 
 [node name="Ray15" parent="Rays" instance=ExtResource("5_pib5s")]
-position = Vector2(698, 37)
-collision_mask = 13
+position = Vector2(691, 38)
+
+[connection signal="timeout" from="Timers/HammerheadAttackCooldown" to="." method="_on_hammerhead_attack_cooldown_timeout"]
+[connection signal="timeout" from="Timers/PincherAttackCooldown" to="." method="_on_pincher_attack_cooldown_timeout"]
+[connection signal="timeout" from="Timers/RayAttackCooldown" to="." method="_on_ray_attack_cooldown_timeout"]

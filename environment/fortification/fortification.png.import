@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cq4o6omeymt1h"
-path="res://.godot/imported/fortification.png-6815dd39ad49228595f7cf5f20cc5097.ctex"
+path="res://.godot/imported/fortification.png-3ca1a6b199f2b334681dbe4dcbffe0eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/fortification/fortification.png"
-dest_files=["res://.godot/imported/fortification.png-6815dd39ad49228595f7cf5f20cc5097.ctex"]
+source_file="res://environment/fortification/fortification.png"
+dest_files=["res://.godot/imported/fortification.png-3ca1a6b199f2b334681dbe4dcbffe0eb.ctex"]
 
 [params]
 

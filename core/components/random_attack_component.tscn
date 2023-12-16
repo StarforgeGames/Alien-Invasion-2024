@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7q4rw16p5pj2"]
+
+[ext_resource type="Script" path="res://core/components/random_attack_component.gd" id="1_jt0tb"]
+
+[node name="RandomAttackComponent" type="Node"]
+script = ExtResource("1_jt0tb")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

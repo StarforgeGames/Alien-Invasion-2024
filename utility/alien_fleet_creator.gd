@@ -23,9 +23,12 @@ var ray_columns: int = 15
 ## Number of rows with ray aliens.
 var ray_rows: int = 1
 
+var shift_x: float = 40.0
+var shift_y: float = 38.0
+
 
 # Called when the script is executed (using File -> Run in Script Editor).
-func _run():
+func _run() -> void:
 	var total_rows = hammerhead_rows + pincher_rows + ray_rows
 
 	for r in total_rows:
@@ -38,39 +41,64 @@ func _run():
 			_spawn_ray_row(row_index)
 
 func _spawn_hammerhead_row(row: int) -> void:
-	const margin_x = 12
+	const margin_x = 13
 	const margin_y = 10
+
+	var parent = _get_parent("Hammerheads")
+
 	for c in hammerhead_columns:
 		var hammerhead = hammerhead_scene.instantiate() as Alien
-		var pos_x: int = (80 + margin_x) * c
-		var pos_y: int = (75 + margin_y) * row
+		var pos_x: float = (80 + margin_x) * c + shift_x
+		var pos_y: float = (75 + margin_y) * row + shift_y
 		hammerhead.position = Vector2(pos_x, pos_y)
 		
-		get_scene().add_child(hammerhead, true)
+		parent.add_child(hammerhead, true)
 		hammerhead.owner = get_scene()
 
 
 func _spawn_pincher_row(row: int) -> void:
 	const margin_x = 9
 	const margin_y = 15
+
+	var parent = _get_parent("Pinchers")
+
 	for c in pincher_columns:
 		var pincher = pincher_scene.instantiate() as Alien
-		var pos_x: int = (50 + margin_x) * c
-		var pos_y: int = (70 + margin_y) * row
+		var pos_x: float = (50 + margin_x) * c + shift_x
+		var pos_y: float = (70 + margin_y) * row + shift_y
 		pincher.position = Vector2(pos_x, pos_y)
 
-		get_scene().add_child(pincher, true)
+		parent.add_child(pincher, true)
 		pincher.owner = get_scene()
 
 
 func _spawn_ray_row(row: int) -> void:
-	const margin_x = 7
+	const margin_x = 6.5
 	const margin_y = 10
+
+	var parent = _get_parent("Rays")
+
 	for c in ray_columns:
 		var ray = ray_scene.instantiate() as Alien
-		var pos_x: int = (40 + margin_x) * c
-		var pos_y: int = (75 + margin_y) * row
+		var pos_x: float = (40 + margin_x) * c + shift_x
+		var pos_y: float = (75 + margin_y) * row + shift_y
 		ray.position = Vector2(pos_x, pos_y)
 
-		get_scene().add_child(ray, true)
+		parent.add_child(ray, true)
 		ray.owner = get_scene()
+
+
+func _get_parent(name: NodePath) -> Node2D:
+	var parent = get_scene().get_node(name)
+	
+	if parent:
+		return parent
+		
+	parent = Node2D.new()
+	parent.name = name
+	get_scene().add_child(parent, true)
+	parent.owner = get_scene()
+	
+	return parent
+	
+	

@@ -5,8 +5,11 @@ extends CharacterBody2D
 signal border_reached()
 signal died()
 
+enum AlienUnit { Hammerhead, Pincher, Ray }
 
-const BORDER_MARGIN = 25.0
+const BORDER_MARGIN = 30.0
+
+@export var alien_unit: AlienUnit
 
 var _speed: float
 var _direction: Vector2
@@ -28,9 +31,10 @@ var _is_dying = false
 
 func _ready() -> void:
 	_projectile_spawner_component.world = Game.world
-	_health_component.connect("died", _on_died)
+	_health_component.died.connect(_on_died)
 
 	_randomize_idle_timer()
+	_idle_timer.start()
 
 
 func _physics_process(delta: float) -> void:
@@ -38,7 +42,10 @@ func _physics_process(delta: float) -> void:
 		return
 
 	velocity = _direction * _speed
-	move_and_collide(velocity * delta)
+	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
+
+	if collision and collision.get_collider() is Player:
+		Game.lost()
 
 	var viewport_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 	if global_position.x < BORDER_MARGIN or global_position.x > (viewport_width - BORDER_MARGIN):
@@ -62,7 +69,7 @@ func hit(damage: float) -> void:
 
 
 func _randomize_idle_timer() -> void:
-	_idle_timer.wait_time = randf_range(4.0, 12.0)
+	_idle_timer.wait_time = randf_range(2.0, 15.0)
 
 
 func _on_idle_timer_timeout() -> void:
@@ -76,9 +83,10 @@ func _on_died() -> void:
 
 	call_deferred("_kill")
 
-func _kill():
+func _kill() -> void:
 	_collision_shape.disabled = true
 	_death_sound.play()
 	await _death_sound.finished
 
 	queue_free()
+	died.emit()

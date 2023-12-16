@@ -68,6 +68,8 @@ toggle_pause_menu={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Aliens"
 2d_physics/layer_3="Fortifications"
+2d_physics/layer_4="Player Projectiles"
+2d_physics/layer_5="Alien Projectiles"
 
 [rendering]
 

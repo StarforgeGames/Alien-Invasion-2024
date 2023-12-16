@@ -20,6 +20,8 @@ func _ready() -> void:
 	get_tree().paused = false
 	Ui.main_menu.game_started.connect(_on_main_menu_restart_game)
 
+	$AlienFleet.defeated.connect(Game.won)
+
 	_spawn_player()
 
 
@@ -29,14 +31,15 @@ func _spawn_player() -> void:
 
 	_player = _player_scene.instantiate() as Player
 	_player.position = _player_start.global_position
+	_player.died.connect(Game.on_player_died)
 	add_child(_player)
 
 
-func _on_player_died():
+func respawn_player() -> void:
 	_player_respawn_timer.start()
 
 
-func _on_player_respawn_timer_timeout():
+func _on_player_respawn_timer_timeout() -> void:
 	_spawn_player()
 
 

@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy2x6uiwavnxc"]
 
-[ext_resource type="Texture2D" uid="uid://cq4o6omeymt1h" path="res://actors/fortification/fortification.png" id="1_bclr4"]
-[ext_resource type="Script" path="res://actors/fortification/fortification_element.gd" id="1_h0qcp"]
+[ext_resource type="Texture2D" uid="uid://cq4o6omeymt1h" path="res://environment/fortification/fortification.png" id="1_bclr4"]
+[ext_resource type="Script" path="res://environment/fortification/fortification_element.gd" id="1_h0qcp"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="2_4vv60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hdun"]
 
 [node name="FortificationElement" type="StaticBody2D"]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 24
 script = ExtResource("1_h0qcp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -9,6 +9,7 @@ signal died()
 @export var _speed: float = 400.0
 
 ## Reference to the _world scene the game is played in.
+var _is_invulnerable = false
 var _is_dying = false
 
 @onready var _health_component := $Components/HealthComponent as HealthComponent
@@ -18,9 +19,13 @@ var _is_dying = false
 @onready var _animation_player := $AnimationPlayer as AnimationPlayer
 @onready var _muzzle_marker := $MuzzleMarker as Marker2D
 @onready var _death_sound := $Audio/DeathSound as AudioStreamPlayer2D
+@onready var _invulernability_timer := $InvulnerabilityTimer as Timer
 
 
-func _ready():
+func _ready() -> void:
+	_is_invulnerable = true
+	_invulernability_timer.start()
+
 	_projectile_spawner_component.world = Game.world
 
 
@@ -36,7 +41,14 @@ func _physics_process(_delta) -> void:
 		_attack_component.attack(_muzzle_marker.global_position)
 
 
+func _on_invulnerability_timer_timeout() -> void:
+	_is_invulnerable = false
+
+
 func hit(damage: float) -> void:
+	if _is_invulnerable:
+		return
+
 	_health_component.current_health -= damage
 
 

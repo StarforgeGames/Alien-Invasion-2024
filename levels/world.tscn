@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b48qqc1xa2nfc" path="res://actors/player/player.tscn" id="2_u7r5c"]
 [ext_resource type="AudioStream" uid="uid://k5m1xirkwe31" path="res://environment/audio/ingame_music.ogg" id="3_w1jb8"]
 [ext_resource type="PackedScene" uid="uid://cbf0gpysgrva0" path="res://actors/aliens/alien_fleet.tscn" id="6_racbt"]
-[ext_resource type="PackedScene" uid="uid://bdkesny0mijbi" path="res://actors/fortification/fortification.tscn" id="8_guqkh"]
+[ext_resource type="PackedScene" uid="uid://bdkesny0mijbi" path="res://environment/fortification/fortification.tscn" id="8_guqkh"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("_player_start")]
 process_mode = 1
@@ -21,10 +21,6 @@ centered = false
 stream = ExtResource("3_w1jb8")
 autoplay = true
 
-[node name="AlienFleet" parent="." instance=ExtResource("6_racbt")]
-position = Vector2(145, 5)
-_speed = 10.0
-
 [node name="Fortifications" type="Node2D" parent="."]
 
 [node name="Fortification" parent="Fortifications" instance=ExtResource("8_guqkh")]
@@ -39,10 +35,13 @@ position = Vector2(612, 600)
 [node name="Fortification4" parent="Fortifications" instance=ExtResource("8_guqkh")]
 position = Vector2(816, 600)
 
+[node name="AlienFleet" parent="." instance=ExtResource("6_racbt")]
+position = Vector2(145, 5)
+
 [node name="PlayerStart" type="Marker2D" parent="."]
 position = Vector2(204, 675)
 
 [node name="PlayerRespawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+one_shot = true
 
 [connection signal="timeout" from="PlayerRespawnTimer" to="." method="_on_player_respawn_timer_timeout"]
