@@ -10,6 +10,7 @@ extends Node2D
 var _player: Player
 
 @onready var _player_respawn_timer := $PlayerRespawnTimer as Timer
+@onready var hud := $HUD as HUD
 
 
 func _init() -> void:
@@ -18,10 +19,12 @@ func _init() -> void:
 
 func _ready() -> void:
 	get_tree().paused = false
-	Ui.main_menu.game_started.connect(_on_main_menu_restart_game)
+	Ui.main_menu.game_started.connect(restart_game)
 
 	$AlienFleet.defeated.connect(Game.won)
 
+	hud.update_lives(Game.current_player_lives)
+	hud.update_score(Game.score)
 	_spawn_player()
 
 
@@ -43,15 +46,9 @@ func _on_player_respawn_timer_timeout() -> void:
 	_spawn_player()
 
 
-func _on_main_menu_restart_game() -> void:
+func restart_game() -> void:
 	get_tree().reload_current_scene()
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_pause_menu"):
-		_toggle_pause_menu()
-
-
-func _toggle_pause_menu() -> void:
-	Ui.toggle_main_menu()
+func toggle_pause():	
 	get_tree().paused = not get_tree().paused

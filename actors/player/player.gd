@@ -53,12 +53,15 @@ func hit(damage: float) -> void:
 
 
 func _on_died() -> void:
-	died.emit()
 	_is_dying = true
+	_is_invulnerable = true
 
 	_animation_player.play("death")
 	_death_sound.play()
 	await _animation_player.animation_finished
 	await _death_sound.finished
 
+	_invulernability_timer.start()
+	
+	died.emit()
 	queue_free()

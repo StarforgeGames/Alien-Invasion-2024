@@ -1,13 +1,37 @@
 extends CanvasLayer
 
 
+## Scene of the main menu.
+var _main_scene: String = "res://main.tscn"
+
 ## The games' main menu.
-@export var main_menu: MainMenu
+@onready var main_menu := $MainMenu as MainMenu
+## The dialog shown when the game is lost.
+@onready var _defeat_dialog := $DefeatDialog as ColorRect
+## The dialog shown when the game is won.
+@onready var _victory_dialog := $VictoryDialog as ColorRect
+
+
+func _ready() -> void:
+	_defeat_dialog.hide()
+	_victory_dialog.hide()
+	main_menu.show()
+
+
+func show_victory_dialog() -> void:
+	_victory_dialog.show()
+
+
+func show_defeat_dialog() -> void:
+	_defeat_dialog.show()
 
 
 func toggle_main_menu() -> void:
-	assert(main_menu)
 	if main_menu.visible:
 		main_menu.hide()
 	else:
 		main_menu.show()
+
+
+func load_main_menu():	
+	get_tree().change_scene_to_file(_main_scene)

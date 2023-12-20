@@ -7,6 +7,7 @@ extends Node
 
 func _ready() -> void:
 	Ui.main_menu.game_started.connect(_on_main_menu_game_started)
+	Ui.main_menu.show()
 
 
 func _on_main_menu_game_started() -> void:

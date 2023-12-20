@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://4jo7ob411jdy"]
+
+[ext_resource type="FontFile" uid="uid://b1mrara1xlf61" path="res://ui/fonts/orbitron.ttf" id="1_xrd8b"]
+
+[resource]
+base_font = ExtResource("1_xrd8b")
+variation_opentype = {
+2003265652: 900
+}

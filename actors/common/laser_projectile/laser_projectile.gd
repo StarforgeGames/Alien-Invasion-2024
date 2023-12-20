@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if "hit" in body:
+	if body.has_method("hit"):
 		body.hit(projectile_data.damage)
 	queue_free()
 
