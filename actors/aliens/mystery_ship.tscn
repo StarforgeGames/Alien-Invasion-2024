@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb5cxmi75alhd"]
+
+[ext_resource type="Script" path="res://actors/aliens/mystery_ship.gd" id="1_3gbum"]
+[ext_resource type="Texture2D" uid="uid://dqmkpvx0ia1qv" path="res://actors/aliens/images/mystery_ship.png" id="1_qxpgv"]
+[ext_resource type="AudioStream" uid="uid://k0djyw7ha8bg" path="res://actors/aliens/audio/mystery_ship_loop.wav" id="3_hje1i"]
+[ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/common/audio/explosion.wav" id="4_qmedx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed8ma"]
+size = Vector2(46.6691, 46.6691)
+
+[node name="MysteryShip" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("1_3gbum")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qxpgv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ed8ma")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("3_hje1i")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("4_qmedx")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

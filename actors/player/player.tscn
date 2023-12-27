@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dv7nhd224de5x" path="res://actors/player/player_laser_projectile.tres" id="3_pmrgw"]
 [ext_resource type="Texture2D" uid="uid://dj2ef3dcmjtaq" path="res://actors/player/images/player.png" id="3_uhwhb"]
 [ext_resource type="Texture2D" uid="uid://8ohlarcljj6o" path="res://actors/player/images/player_death.png" id="4_5sgur"]
-[ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/player/audio/explosion.wav" id="4_f44tb"]
+[ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/common/audio/explosion.wav" id="5_n2rcg"]
 [ext_resource type="AudioStream" uid="uid://dex28mvwg50ka" path="res://actors/player/audio/player_shot.wav" id="5_qfu3m"]
 [ext_resource type="Script" path="res://core/components/projectile_spawner_component.gd" id="7_fopvy"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="7_ub55h"]
@@ -161,7 +161,7 @@ position = Vector2(0, -48)
 stream = ExtResource("5_qfu3m")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("4_f44tb")
+stream = ExtResource("5_n2rcg")
 
 [node name="Components" type="Node" parent="."]
 
