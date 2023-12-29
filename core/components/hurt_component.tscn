@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3sdsrfyov5lw"]
+
+[ext_resource type="Script" path="res://core/components/hurt_component.gd" id="1_dbctj"]
+
+[node name="HurtComponent" type="Node2D"]
+script = ExtResource("1_dbctj")
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]

@@ -1,10 +1,28 @@
 extends Node
 
 
+signal score_changed(new_score: int)
+signal lifes_changed(current_lifes: int)
+
+
 var world: World
-var max_player_lives: int = 3
-var current_player_lives: int = max_player_lives
-var score: int = 0
+var max_player_lifes: int = 3
+
+var _current_player_lifes: int = max_player_lifes
+var current_player_lifes: int:
+	get:
+		return _current_player_lifes
+	set(value):
+		_current_player_lifes = value
+		lifes_changed.emit(value)
+
+var _score: int = 0
+var score: int:
+	get:
+		return _score
+	set(value):
+		_score = value
+		score_changed.emit(value)
 
 
 func _ready():	
@@ -22,10 +40,9 @@ func _toggle_pause_menu() -> void:
 
 
 func on_player_died() -> void:
-	current_player_lives -= 1
-	world.hud.update_lives(current_player_lives)
+	current_player_lifes -= 1
 
-	if current_player_lives <= 0:
+	if current_player_lifes <= 0:
 		lost()
 	else:
 		world.respawn_player()
@@ -42,6 +59,6 @@ func lost() -> void:
 
 
 func restart() -> void:
-	current_player_lives = max_player_lives
+	current_player_lifes = max_player_lifes
 	score = 0
 	world.restart_game()

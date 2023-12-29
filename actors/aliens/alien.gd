@@ -14,31 +14,27 @@ const BORDER_MARGIN = 30.0
 var _speed: float
 var _direction: Vector2
 
-## Reference to the _world scene the game is played in.
-var _is_dying = false
-
 @onready var _health_component := $Components/HealthComponent as HealthComponent
+@onready var _hurt_component := $Components/HurtComponent as HurtComponent
 @onready var _projectile_spawner_component := $Components/ProjectileSpawnerComponent as ProjectileSpawnerComponent
 @onready var _attack_component := $Components/AttackComponent as AttackComponent
+@onready var _score_component := $Components/ScoreComponent as ScoreComponent
 
-@onready var _sprite := $Sprite2D as Sprite2D
-@onready var _collision_shape := $CollisionShape2D as CollisionShape2D
 @onready var _animation_player := $AnimationPlayer as AnimationPlayer
 @onready var _muzzle_marker := $MuzzleMarker as Marker2D
-@onready var _death_sound := $Audio/DeathSound as AudioStreamPlayer2D
 @onready var _idle_timer := $Timers/IdleTimer as Timer
 
 
 func _ready() -> void:
 	_projectile_spawner_component.world = Game.world
-	_health_component.died.connect(_on_died)
+	_health_component.died.connect(_score_component.award_score)
 
 	_randomize_idle_timer()
 	_idle_timer.start()
 
 
 func _physics_process(delta: float) -> void:
-	if _is_dying:
+	if _hurt_component.is_dying:
 		return
 
 	velocity = _direction * _speed
@@ -58,14 +54,14 @@ func update_movement(speed: float, direction: Vector2):
 
 
 func attack() -> void:
-	if _is_dying:
+	if _hurt_component.is_dying:
 		return
 		
 	_attack_component.attack(_muzzle_marker.global_position)
 
 
 func hit(damage: float) -> void:
-	_health_component.current_health -= damage
+	_hurt_component.hurt(damage)
 
 
 func _randomize_idle_timer() -> void:
@@ -73,20 +69,14 @@ func _randomize_idle_timer() -> void:
 
 
 func _on_idle_timer_timeout() -> void:
+	if _hurt_component.is_dying:		
+		_idle_timer.stop()
+		return
+
 	_animation_player.play("idle")
 	_randomize_idle_timer()
 
 
-func _on_died() -> void:
-	_sprite.hide()
-	_idle_timer.stop()
-
-	call_deferred("_kill")
-
-func _kill() -> void:
-	_collision_shape.disabled = true
-	_death_sound.play()
-	await _death_sound.finished
-
-	queue_free()
+func _on_death_finished() -> void:
 	died.emit()
+	queue_free()

@@ -14,22 +14,27 @@ extends CharacterBody2D
 @export var respawn_max: float = 20.0
 
 var _time: float = 0.0
-var _is_dead = true
 var _respawn_pos: Vector2
 
-@onready var sprite := $Sprite2D as Sprite2D
-@onready var move_sound := $Audio/MoveSound as AudioStreamPlayer2D
-@onready var death_sound := $Audio/DeathSound as AudioStreamPlayer2D
-@onready var respawn_timer := $RespawnTimer as Timer
+@onready var _health_component := $Components/HealthComponent as HealthComponent
+@onready var _hurt_component := $Components/HurtComponent as HurtComponent
+@onready var _score_component := $Components/ScoreComponent as ScoreComponent
+
+@onready var _sprite := $Sprite2D as Sprite2D
+@onready var _collision_shape := $CollisionShape2D as CollisionShape2D
+@onready var _move_sound := $Audio/MoveSound as AudioStreamPlayer2D
+@onready var _respawn_timer := $RespawnTimer as Timer
 
 
-func _ready():
+func _ready() -> void:
+	_health_component.died.connect(_score_component.award_score)
+
 	_respawn_pos = position
 	_reset()
 
 
 func _physics_process(delta) -> void:
-	if _is_dead:
+	if _hurt_component.is_dying:
 		return
 
 	_time += delta
@@ -41,35 +46,38 @@ func _physics_process(delta) -> void:
 
 
 func respawn() -> void:
-	_is_dead = false
-	move_sound.play()
+	_hurt_component.is_dying = false
+	_move_sound.play()
 
 
 func _reset() -> void:
 	position = _respawn_pos
 	_time = 0.0
-	move_sound.stop()
+	_move_sound.stop()
+
+	_health_component.current_health = 1
+	_hurt_component.is_dying = true
+	_hurt_component.is_invulnerable = false
+	_sprite.show()
+	_collision_shape.disabled = false
 	
-	respawn_timer.wait_time = randf_range(respawn_min, respawn_max)
-	respawn_timer.start()
+	_respawn_timer.wait_time = randf_range(respawn_min, respawn_max)
+	_respawn_timer.start()
 	
 
 func hit(_damage: float) -> void:
-	if _is_dead:
-		return
+	_hurt_component.hurt(99)
+	_move_sound.stop()
 
-	_is_dead = true
-	death_sound.play()
-	# TODO: Award points
-	await death_sound.finished
 
+func _on_death_finished():
 	_reset()
 
 
-func _on_respawn_timer_timeout():
+func _on_respawn_timer_timeout() -> void:
 	respawn()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	_is_dead = true
+	_hurt_component.is_dying = true
 	_reset()
