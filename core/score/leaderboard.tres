@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Leaderboard" load_steps=2 format=3 uid="uid://8t04wmv13a73"]
+
+[ext_resource type="Script" path="res://core/score/leaderboard.gd" id="1_0gqpa"]
+
+[resource]
+script = ExtResource("1_0gqpa")
+board = Array[Resource("res://core/score/high_score.gd")]([])

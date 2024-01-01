@@ -8,6 +8,7 @@ signal lifes_changed(current_lifes: int)
 
 
 var world: World
+var leaderboard: Leaderboard
 var max_player_lifes: int = 3
 
 var _current_player_lifes: int = max_player_lifes
@@ -29,6 +30,7 @@ var score: int:
 
 func _ready():	
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	leaderboard = Leaderboard.load_or_create()
 
 
 func _input(event: InputEvent) -> void:

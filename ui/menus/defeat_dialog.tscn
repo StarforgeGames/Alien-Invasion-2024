@@ -66,7 +66,7 @@ text = "Play again"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
-text = "Continue"
+text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

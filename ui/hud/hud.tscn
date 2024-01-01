@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c70bn21u3fvie"]
+[gd_scene load_steps=3 format=3 uid="uid://c70bn21u3fvie"]
 
 [ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_equ6j"]
+[ext_resource type="Theme" uid="uid://d5g6eqtwjes" path="res://ui/default_theme.tres" id="2_ojiib"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_equ6j")
@@ -10,10 +11,11 @@ custom_minimum_size = Vector2(250, 25)
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
+offset_left = -300.0
 offset_bottom = 40.0
 grow_horizontal = 0
 size_flags_horizontal = 3
+theme = ExtResource("2_ojiib")
 color = Color(0, 0, 0, 0.588235)
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayerStats"]
@@ -52,7 +54,7 @@ text = "Score:"
 
 [node name="ScoreValueLabel" type="Label" parent="PlayerStats/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"

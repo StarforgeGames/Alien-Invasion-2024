@@ -13,20 +13,20 @@ signal defeated()
 @export var _vertical_jump: float = 15.0
 
 var _direction := Vector2.RIGHT
+var _aliens_remaining: int
 
 
 func _ready() -> void:
 	var aliens = _get_all_aliens()
+	_aliens_remaining = aliens.size()
 	for alien: Alien in aliens:
 		alien.border_reached.connect(_on_border_reached)
+		alien.died.connect(_on_alien_died)
 		alien.update_movement(_speed, _direction)
 
 
 func _get_all_aliens() -> Array[Node]:
-	var aliens = $Hammerheads.get_children()
-	aliens.append_array($Pinchers.get_children())
-	aliens.append_array($Rays.get_children())
-	return aliens
+	return get_tree().get_nodes_in_group("aliens")
 
 
 func _on_border_reached() -> void:
@@ -47,5 +47,6 @@ func _on_border_reached() -> void:
 
 
 func _on_alien_died() -> void:
-	if $Hammerheads.get_child_count() == 0 and $Pinchers.get_child_count() == 0 and $Rays.get_child_count() == 0:
+	_aliens_remaining -= 1
+	if _aliens_remaining <= 0:
 		defeated.emit()

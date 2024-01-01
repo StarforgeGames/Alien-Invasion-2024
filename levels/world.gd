@@ -21,7 +21,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	Ui.main_menu.game_started.connect(restart_game)
 
-	#$AlienFleet.defeated.connect(Game.won)	
+	$AlienFleet.defeated.connect(Game.won)	
 	Game.lifes_changed.connect(hud.update_lifes)
 	Game.score_changed.connect(hud.update_score)
 
