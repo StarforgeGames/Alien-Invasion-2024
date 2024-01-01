@@ -2,9 +2,11 @@ class_name HurtComponent
 extends Node2D
 
 
+## Emitted when all death effects have finished.
 signal death_finished()
 
 
+## Time before invulnerability ends.
 @export var _invulernability_time: float = 1.0
 
 @export var _health_component: HealthComponent

@@ -1,7 +1,9 @@
 extends Node
 
 
+## Emitted when the player has earned score points.
 signal score_changed(new_score: int)
+## Emitted when the players lifes changed.
 signal lifes_changed(current_lifes: int)
 
 

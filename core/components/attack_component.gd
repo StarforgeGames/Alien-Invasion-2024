@@ -2,6 +2,7 @@ class_name AttackComponent
 extends Node
 
 
+## Time before owning actor can attack again.
 @export var _cooldown_time: float = 1.0
 @export var _animation_player: AnimationPlayer
 @export var _animation_name: StringName = "attack"
