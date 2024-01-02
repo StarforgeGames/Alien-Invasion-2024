@@ -48,6 +48,7 @@ position = Vector2(-50, 50)
 position = Vector2(204, 675)
 
 [node name="PlayerRespawnTimer" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("7_aqwcy")]

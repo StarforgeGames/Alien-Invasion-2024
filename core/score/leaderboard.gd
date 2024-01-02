@@ -5,7 +5,7 @@ extends Resource
 const MAX_NUMBER_ENTRIES = 10
 const FILE_PATH = "user://leaderboard.tres"
 
-@export var board: Array[HighScore]
+@export var high_scores: Array[HighScore]
 
 
 static func load_or_create() -> Leaderboard:
@@ -28,23 +28,23 @@ func add_high_score(new_high_score: HighScore) -> bool:
 	if not is_new_high_score(new_high_score.score):
 		return false
 	
-	if board.size() < MAX_NUMBER_ENTRIES:
-		board.append(new_high_score)
+	if high_scores.size() < MAX_NUMBER_ENTRIES:
+		high_scores.append(new_high_score)
 		return true
 
 	sort_descending()
-	var index = board.find(func(hs): return hs.score < new_high_score)
+	var index = high_scores.find(func(hs): return hs.score < new_high_score)
 	if index > -1:
-		board[index] = new_high_score
+		high_scores[index] = new_high_score
 	else:
-		board.append(new_high_score)
+		high_scores.append(new_high_score)
 	
 	return true
 
 
 func is_new_high_score(score: int) -> bool:
-	return board.size() < MAX_NUMBER_ENTRIES or board.any(func(hs): return hs.score < score)
+	return high_scores.size() < MAX_NUMBER_ENTRIES or high_scores.any(func(hs): return hs.score < score)
 
 
 func sort_descending() -> void:
-	board.sort_custom(func(a, b): return a.score > b.score)
+	high_scores.sort_custom(func(a, b): return a.score > b.score)

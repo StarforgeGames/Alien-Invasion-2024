@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0f83ufvlpsy"]
+
+[ext_resource type="Theme" uid="uid://d5g6eqtwjes" path="res://ui/default_theme.tres" id="1_mc2f7"]
+[ext_resource type="Script" path="res://ui/menus/high_score_menu.gd" id="2_38ium"]
+[ext_resource type="Texture2D" uid="uid://dfi0y33gp2mxv" path="res://ui/images/background_high_score.png" id="3_uf00p"]
+[ext_resource type="PackedScene" uid="uid://bhqfpvl5t7f67" path="res://ui/components/high_score_entry.tscn" id="4_r5iwi"]
+[ext_resource type="PackedScene" uid="uid://55x8s8tr5ke5" path="res://ui/components/ai_button.tscn" id="5_o8f66"]
+[ext_resource type="Texture2D" uid="uid://dk1dtjqoho0n1" path="res://ui/images/back.png" id="6_t6ehb"]
+[ext_resource type="Texture2D" uid="uid://dowlq53ateenb" path="res://ui/images/back_hover.png" id="7_04s6v"]
+
+[node name="HighScoreMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mc2f7")
+script = ExtResource("2_38ium")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_uf00p")
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -20.0
+offset_right = 320.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlaceLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"GreenLabel"
+text = "Place"
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"GreenLabel"
+text = "Player Name"
+
+[node name="DateTimeLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_type_variation = &"GreenLabel"
+text = "Date"
+text_overrun_behavior = 3
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+theme_type_variation = &"GreenLabel"
+text = "Score"
+
+[node name="HighScoreEntries" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HighScoreEntry1" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry2" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry3" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry4" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry5" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry6" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry7" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry8" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry9" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="HighScoreEntry10" parent="VBoxContainer/HighScoreEntries" instance=ExtResource("4_r5iwi")]
+layout_mode = 2
+
+[node name="BackButton" parent="." instance=ExtResource("5_o8f66")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("6_t6ehb")
+texture_hover = ExtResource("7_04s6v")
+stretch_mode = 4
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

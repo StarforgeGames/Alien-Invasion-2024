@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhqfpvl5t7f67"]
+
+[ext_resource type="Script" path="res://ui/components/high_score_entry.gd" id="1_w6rhu"]
+
+[node name="HighScoreEntry" type="MarginContainer"]
+custom_minimum_size = Vector2(640, 25)
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_w6rhu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PlaceLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Place"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player Name"
+
+[node name="DateTimeLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Date"
+text_overrun_behavior = 3
+
+[node name="ScoreLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+text = "Score"

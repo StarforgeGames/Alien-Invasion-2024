@@ -30,7 +30,7 @@ func _save_highscore() -> void:
 
 	var high_score = HighScore.new()
 	high_score.name = %NameLineEdit.text
-	high_score.score = Game.score + Game._current_player_lifes
+	high_score.score = Game.score + Game._current_player_lifes * 10
 	high_score.datetime = Time.get_datetime_dict_from_system()
 
 	Game.leaderboard.add_high_score(high_score)

@@ -59,7 +59,7 @@ size_flags_stretch_ratio = 2.0
 
 [node name="HighscoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HighscoreContainer"]
 layout_mode = 2
-theme_type_variation = &"HeaderSmall"
+theme_type_variation = &"GreenLabel"
 text = "New Highscore!"
 horizontal_alignment = 1
 
@@ -68,7 +68,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter your name"
-max_length = 100
+max_length = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

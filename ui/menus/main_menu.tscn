@@ -61,14 +61,14 @@ theme_override_constants/h_separation = 0
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../QuitButton")
-focus_neighbor_right = NodePath("../HighscoreButton")
-focus_next = NodePath("../HighscoreButton")
+focus_neighbor_right = NodePath("../HighScoreButton")
+focus_next = NodePath("../HighScoreButton")
 focus_previous = NodePath("../QuitButton")
 texture_normal = ExtResource("2_42wdb")
 texture_hover = ExtResource("3_godfy")
 stretch_mode = 4
 
-[node name="HighscoreButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
+[node name="HighScoreButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
 layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_left = NodePath("../NewGameButton")
@@ -82,10 +82,10 @@ stretch_mode = 4
 [node name="CreditsButton" parent="VFlowContainer/BottomRow/MenuButtons" instance=ExtResource("4_kbhah")]
 layout_mode = 2
 size_flags_vertical = 3
-focus_neighbor_left = NodePath("../HighscoreButton")
+focus_neighbor_left = NodePath("../HighScoreButton")
 focus_neighbor_right = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../HighscoreButton")
+focus_previous = NodePath("../HighScoreButton")
 texture_normal = ExtResource("7_6566i")
 texture_hover = ExtResource("8_njpln")
 stretch_mode = 4
@@ -103,4 +103,5 @@ stretch_mode = 4
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/HighScoreButton" to="." method="_on_high_score_button_pressed"]
 [connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]
