@@ -3,14 +3,14 @@ extends MarginContainer
 
 
 func _ready() -> void:
-	%PlaceLabel.text = ""
+	%RankLabel.text = ""
 	%NameLabel.text = ""
 	%DateTimeLabel.text = ""
 	%ScoreLabel.text = ""
 
 
-func display(place: int, high_score: HighScore) -> void:	
-	%PlaceLabel.text = str(place) + "."
+func display(rank: int, high_score: HighScore) -> void:	
+	%RankLabel.text = str(rank) + "."
 
 	if high_score.name:
 		%NameLabel.text = high_score.name

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dowlq53ateenb" path="res://ui/images/back_hover.png" id="7_04s6v"]
 
 [node name="HighScoreMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,26 +50,27 @@ theme_override_constants/margin_bottom = 15
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PlaceLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="RankLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-theme_type_variation = &"GreenLabel"
-text = "Place"
+theme_type_variation = &"EmphasizedLabel"
+text = "Rank
+"
 
 [node name="NameLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"GreenLabel"
+theme_type_variation = &"EmphasizedLabel"
 text = "Player Name"
 
 [node name="DateTimeLabel" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme_type_variation = &"GreenLabel"
+theme_type_variation = &"EmphasizedLabel"
 text = "Date"
 text_overrun_behavior = 3
 
@@ -76,7 +78,7 @@ text_overrun_behavior = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
-theme_type_variation = &"GreenLabel"
+theme_type_variation = &"EmphasizedLabel"
 text = "Score"
 
 [node name="HighScoreEntries" type="VBoxContainer" parent="VBoxContainer"]
@@ -130,4 +132,5 @@ texture_normal = ExtResource("6_t6ehb")
 texture_hover = ExtResource("7_04s6v")
 stretch_mode = 4
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

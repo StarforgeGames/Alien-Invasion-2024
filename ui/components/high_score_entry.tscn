@@ -14,11 +14,11 @@ script = ExtResource("1_w6rhu")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="PlaceLabel" type="Label" parent="HBoxContainer"]
+[node name="RankLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-text = "Place"
+text = "Rank"
 horizontal_alignment = 1
 
 [node name="NameLabel" type="Label" parent="HBoxContainer"]
