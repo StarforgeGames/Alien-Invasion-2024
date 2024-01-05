@@ -59,7 +59,7 @@ size_flags_stretch_ratio = 2.0
 
 [node name="HighscoreLabel" type="Label" parent="MarginContainer/VBoxContainer/HighscoreContainer"]
 layout_mode = 2
-theme_type_variation = &"GreenLabel"
+theme_type_variation = &"EmphasizedLabel"
 text = "New Highscore!"
 horizontal_alignment = 1
 
@@ -86,5 +86,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 10
 text = "Main Menu"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

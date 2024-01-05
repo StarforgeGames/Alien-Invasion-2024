@@ -28,7 +28,7 @@ var score: int:
 		score_changed.emit(value)
 
 
-func _ready():	
+func _ready() -> void:	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	leaderboard = Leaderboard.load_or_create()
 
@@ -66,3 +66,7 @@ func restart() -> void:
 	current_player_lifes = max_player_lifes
 	score = 0
 	world.restart_game()
+
+
+func get_final_score() -> int:
+	return score + _current_player_lifes * 10

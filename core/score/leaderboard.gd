@@ -21,24 +21,23 @@ static func load_or_create() -> Leaderboard:
 
 func save() -> void:
 	sort_descending()
+
+	if high_scores.size() > MAX_NUMBER_ENTRIES:
+		high_scores.resize(MAX_NUMBER_ENTRIES)
+	
 	ResourceSaver.save(self, FILE_PATH)
 
 
 func add_high_score(new_high_score: HighScore) -> bool:
 	if not is_new_high_score(new_high_score.score):
 		return false
-	
-	if high_scores.size() < MAX_NUMBER_ENTRIES:
-		high_scores.append(new_high_score)
-		return true
 
+	high_scores.append(new_high_score)
 	sort_descending()
-	var index = high_scores.find(func(hs): return hs.score < new_high_score)
-	if index > -1:
-		high_scores[index] = new_high_score
-	else:
-		high_scores.append(new_high_score)
-	
+
+	if high_scores.size() > MAX_NUMBER_ENTRIES:
+		high_scores.pop_back()
+		
 	return true
 
 
