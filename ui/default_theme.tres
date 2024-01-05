@@ -17,3 +17,7 @@ HeaderLarge/fonts/font = ExtResource("1_uf143")
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("2_tv8vs")
 LineEdit/fonts/font = ExtResource("2_tv8vs")
+RichTextLabel/font_sizes/bold_font_size = 72
+RichTextLabel/font_sizes/normal_font_size = 20
+RichTextLabel/fonts/bold_font = ExtResource("1_uf143")
+RichTextLabel/fonts/normal_font = ExtResource("2_tv8vs")

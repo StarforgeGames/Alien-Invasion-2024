@@ -8,6 +8,8 @@ var _main_scene: String = "res://main.tscn"
 @onready var main_menu := $MainMenu as MainMenu
 ## The high score menu screen.
 @onready var high_score_menu := $HighScoreMenu as HighScoreMenu
+## The credits menu screen.
+@onready var credits_menu := $CreditsMenu as CreditsMenu
 ## The dialog shown when the game is lost.
 @onready var _defeat_dialog := $DefeatDialog as ColorRect
 ## The dialog shown when the game is won.
@@ -20,8 +22,12 @@ func _ready() -> void:
 	main_menu.show()
 
 
-func show_high_score_menu():
+func show_high_score_menu() -> void:
 	high_score_menu.show()
+
+
+func show_credits_menu() -> void:
+	credits_menu.show()
 
 
 func show_victory_dialog() -> void:
@@ -39,5 +45,5 @@ func toggle_main_menu() -> void:
 		main_menu.show()
 
 
-func load_main_menu():	
+func load_main_menu() -> void:	
 	get_tree().change_scene_to_file(_main_scene)

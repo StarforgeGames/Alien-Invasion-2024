@@ -104,4 +104,5 @@ stretch_mode = 4
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/HighScoreButton" to="." method="_on_high_score_button_pressed"]
+[connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VFlowContainer/BottomRow/MenuButtons/QuitButton" to="." method="_on_quit_button_pressed"]

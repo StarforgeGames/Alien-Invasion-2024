@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://hmua5ckodt8l"]
+
+[ext_resource type="Script" path="res://ui/menus/credits_menu.gd" id="1_bovy8"]
+[ext_resource type="Texture2D" uid="uid://bk5ef1g20mrxi" path="res://environment/images/space.png" id="1_c6dlj"]
+[ext_resource type="Theme" uid="uid://d5g6eqtwjes" path="res://ui/default_theme.tres" id="1_km3ic"]
+[ext_resource type="PackedScene" uid="uid://55x8s8tr5ke5" path="res://ui/components/ai_button.tscn" id="3_fqvsk"]
+[ext_resource type="Texture2D" uid="uid://dk1dtjqoho0n1" path="res://ui/images/back.png" id="4_5xn1t"]
+[ext_resource type="Texture2D" uid="uid://dowlq53ateenb" path="res://ui/images/back_hover.png" id="5_qtupq"]
+
+[node name="CreditsMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_km3ic")
+script = ExtResource("1_bovy8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_c6dlj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 770.0
+offset_bottom = 1197.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+bbcode_enabled = true
+text = "[center][b]Alien Invasion[/b]
+[font_size=32]by Starforge Games[/font_size]
+
+
+
+
+[font_size=32]Programming[/font_size]
+
+Michael Klement
+Patrick Bader
+
+
+
+
+[font_size=32]Graphics[/font_size]
+
+Daniel Friedenberger
+Isolde Scheurer
+
+
+
+
+[font_size=32]Sounds[/font_size]
+
+Benjamin Wiedmann
+
+
+
+
+[font_size=32]Port to Godot 4[/font_size]
+
+Michael Klement
+
+
+
+
+[font_size=32]Special Thanks[/font_size]
+
+Christian Seitzer
+Hansheinz Müller Philipps Sohn[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="BackButton" parent="." instance=ExtResource("3_fqvsk")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_5xn1t")
+texture_hover = ExtResource("5_qtupq")
+stretch_mode = 4
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

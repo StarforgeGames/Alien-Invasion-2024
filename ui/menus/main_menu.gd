@@ -15,6 +15,10 @@ func _on_high_score_button_pressed() -> void:
 	Ui.show_high_score_menu()
 
 
+func _on_credits_button_pressed():
+	Ui.show_credits_menu()
+	
+
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
