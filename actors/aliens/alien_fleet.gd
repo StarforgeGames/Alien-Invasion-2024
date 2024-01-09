@@ -2,6 +2,7 @@ class_name AlienFleet
 extends Node2D
 
 
+signal alien_hit()
 signal defeated()
 
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	_aliens_remaining = aliens.size()
 	for alien: Alien in aliens:
 		alien.border_reached.connect(_on_border_reached)
+		alien.hit.connect(_on_alien_hit)
 		alien.died.connect(_on_alien_died)
 		alien.update_movement(_speed, _direction)
 
@@ -44,6 +46,10 @@ func _on_border_reached() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, position.y + _vertical_jump), 0.2)
 	tween.set_ease(Tween.EASE_IN)
+
+
+func _on_alien_hit() -> void:
+	alien_hit.emit()
 
 
 func _on_alien_died() -> void:

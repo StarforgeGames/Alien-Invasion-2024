@@ -5,7 +5,7 @@ extends StaticBody2D
 @onready var _health_component := $Components/HealthComponent as HealthComponent
 
 
-func hit(damage:float) -> void:
+func take_damage(damage:float) -> void:
 	_health_component.current_health -= damage
 
 

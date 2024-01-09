@@ -28,6 +28,7 @@ func _save_highscore() -> void:
 	Game.leaderboard.add_high_score(high_score)
 	Game.leaderboard.save()
 
+
 func _on_visibility_changed():
 	if visible and high_score_container:
 		%NameLineEdit.text = ""

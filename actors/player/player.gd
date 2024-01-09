@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 
+signal hit()
 signal died()
 
 
@@ -31,7 +32,8 @@ func _physics_process(_delta) -> void:
 		_attack_component.attack(_muzzle_marker.global_position)
 
 
-func hit(damage: float) -> void:
+func take_damage(damage: float) -> void:
+	hit.emit()
 	_hurt_component.hurt(damage)
 
 

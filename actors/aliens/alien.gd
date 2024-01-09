@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 signal border_reached()
+signal hit()
 signal died()
 
 enum AlienUnit { Hammerhead, Pincher, Ray }
@@ -60,7 +61,8 @@ func attack() -> void:
 	_attack_component.attack(_muzzle_marker.global_position)
 
 
-func hit(damage: float) -> void:
+func take_damage(damage: float) -> void:
+	hit.emit()
 	_hurt_component.hurt(damage)
 
 

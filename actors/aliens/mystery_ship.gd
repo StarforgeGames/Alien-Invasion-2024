@@ -2,6 +2,8 @@ class_name MysteryShip
 extends CharacterBody2D
 
 
+signal hit()
+
 ## Horizontal movement speed.
 @export var move_speed: float = 175.0
 ## Frequency of the sine wave movement.
@@ -65,7 +67,8 @@ func _reset() -> void:
 	_respawn_timer.start()
 	
 
-func hit(_damage: float) -> void:
+func take_damage(_damage: float) -> void:
+	hit.emit()
 	_hurt_component.hurt(99)
 	_move_sound.stop()
 

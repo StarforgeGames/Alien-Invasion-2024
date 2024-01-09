@@ -40,7 +40,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 2
 bbcode_enabled = true
-text = "[center][b]Alien Invasion[/b]
+text = "[center][b]ALIEN INVASION[/b]
 [font_size=32]by Starforge Games[/font_size]
 
 

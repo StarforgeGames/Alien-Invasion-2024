@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvwtb175g2mgn"]
+
+[ext_resource type="Script" path="res://core/ai_camera.gd" id="1_tyuxv"]
+
+[node name="AiCamera" type="Node2D"]
+script = ExtResource("1_tyuxv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
