@@ -61,7 +61,7 @@ func _on_player_hit():
 
 
 func _on_alien_hit():
-	_camera.apply_screen_shake(2.0)
+	_camera.apply_screen_shake(3.0)
 
 
 func _on_mystery_ship_hit():
