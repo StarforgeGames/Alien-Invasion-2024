@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxmjug1c2hhdv"]
+[gd_scene load_steps=16 format=3 uid="uid://bxmjug1c2hhdv"]
 
 [ext_resource type="PackedScene" uid="uid://dwm2amk7yu3v2" path="res://actors/aliens/alien.tscn" id="1_iig83"]
 [ext_resource type="Texture2D" uid="uid://ds37qie3bb4of" path="res://actors/aliens/images/pincher.png" id="2_i37tk"]
@@ -74,6 +74,41 @@ _data = {
 "idle": SubResource("Animation_j224v")
 }
 
+[sub_resource type="Gradient" id="Gradient_6gv4t"]
+offsets = PackedFloat32Array(0.0078125, 0.992188)
+colors = PackedColorArray(0, 0.858608, 0.755858, 1, 0, 0.476591, 0.416805, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xcln1"]
+gradient = SubResource("Gradient_6gv4t")
+
+[sub_resource type="Curve" id="Curve_vvmv0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.19914), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y2jdw"]
+curve = SubResource("Curve_vvmv0")
+
+[sub_resource type="Curve" id="Curve_2p26e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.669014, 0.692693), -1.11665, -1.11665, 0, 0, Vector2(1, 0.11533), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w7a5f"]
+curve = SubResource("Curve_2p26e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6mal5"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+radial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_w7a5f")
+color_ramp = SubResource("GradientTexture1D_xcln1")
+emission_curve = SubResource("CurveTexture_y2jdw")
+hue_variation_max = 0.1
+
 [node name="Pincher" groups=["aliens"] instance=ExtResource("1_iig83")]
 
 [node name="Sprite2D" parent="." index="0"]
@@ -94,6 +129,9 @@ libraries = {
 
 [node name="DeathSound" parent="Audio" index="1"]
 stream = ExtResource("3_huh53")
+
+[node name="ExplosionVfx" parent="Effects" index="0"]
+process_material = SubResource("ParticleProcessMaterial_6mal5")
 
 [node name="AttackComponent" parent="Components" index="2"]
 _cooldown_time = 3.0

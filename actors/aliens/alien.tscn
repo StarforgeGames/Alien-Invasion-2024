@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwm2amk7yu3v2"]
+[gd_scene load_steps=13 format=3 uid="uid://dwm2amk7yu3v2"]
 
 [ext_resource type="Script" path="res://core/components/projectile_spawner_component.gd" id="1_7gyi2"]
 [ext_resource type="Script" path="res://actors/aliens/alien.gd" id="1_18omt"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="1_kshyc"]
 [ext_resource type="AudioStream" uid="uid://c84ufna086j5l" path="res://actors/aliens/audio/alien_shot.wav" id="2_27l1e"]
 [ext_resource type="Resource" uid="uid://b00rlmfvqg1pl" path="res://actors/aliens/alien_laser_projectile.tres" id="2_wnahc"]
+[ext_resource type="PackedScene" uid="uid://cde7n08fwdwbt" path="res://effects/explosion.tscn" id="3_e0n8m"]
 [ext_resource type="PackedScene" uid="uid://n587cr1psc8b" path="res://core/components/attack_component.tscn" id="5_2p0gu"]
 [ext_resource type="Script" path="res://core/components/position_clamp_component.gd" id="7_iartr"]
 [ext_resource type="Script" path="res://core/components/score_component.gd" id="8_8fvoh"]
@@ -54,6 +55,10 @@ stream = ExtResource("2_27l1e")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Audio"]
 
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="ExplosionVfx" parent="Effects" instance=ExtResource("3_e0n8m")]
+
 [node name="Components" type="Node" parent="."]
 
 [node name="HealthComponent" type="Node" parent="Components"]
@@ -74,12 +79,13 @@ actor = NodePath("../..")
 [node name="ScoreComponent" type="Node" parent="Components"]
 script = ExtResource("8_8fvoh")
 
-[node name="HurtComponent" parent="Components" node_paths=PackedStringArray("_health_component", "_collision_shape", "_death_animation_player", "_death_sound") instance=ExtResource("9_8dkm7")]
+[node name="HurtComponent" parent="Components" node_paths=PackedStringArray("_health_component", "_collision_shape", "_death_animation_player", "_death_sound", "_death_vfx") instance=ExtResource("9_8dkm7")]
 _invulernability_time = 0.1
 _health_component = NodePath("../HealthComponent")
 _collision_shape = NodePath("../../CollisionShape2D")
 _death_animation_player = NodePath("../../AnimationPlayer")
 _death_sound = NodePath("../../Audio/DeathSound")
+_death_vfx = NodePath("../../Effects/ExplosionVfx")
 
 [node name="Timers" type="Node" parent="."]
 

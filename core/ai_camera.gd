@@ -31,6 +31,9 @@ func _process(delta: float) -> void:
 
 
 func apply_screen_shake(shake_strength: float = 50.0) -> void:
+	if shake_strength < _current_shake_strength:
+		return
+	
 	_current_shake_strength = shake_strength
 
 

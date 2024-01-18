@@ -35,7 +35,6 @@ func _ready() -> void:
 	_mystery_ship.hit.connect(_on_mystery_ship_hit)
 
 	_spawn_player()
-	_player.hit.connect(_on_player_hit)
 
 
 func _spawn_player() -> void:
@@ -44,6 +43,7 @@ func _spawn_player() -> void:
 
 	_player = _player_scene.instantiate() as Player
 	_player.position = _player_start.global_position
+	_player.hit.connect(_on_player_hit)
 	_player.died.connect(Game.on_player_died)
 	add_child(_player)
 
