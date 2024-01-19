@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxup4ej7rikee"]
+
+[ext_resource type="Script" path="res://effects/splatter_effect.gd" id="1_uxcmw"]
+
+[sub_resource type="Gradient" id="Gradient_61wex"]
+offsets = PackedFloat32Array(0.527344, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_20if2"]
+gradient = SubResource("Gradient_61wex")
+
+[sub_resource type="Curve" id="Curve_vvmv0"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.995316), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y2jdw"]
+curve = SubResource("Curve_vvmv0")
+
+[sub_resource type="Curve" id="Curve_2p26e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.728873, 0.664756), -1.11665, -1.11665, 0, 0, Vector2(1, 0.11533), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w7a5f"]
+curve = SubResource("Curve_2p26e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kay7o"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+radial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_w7a5f")
+color_ramp = SubResource("GradientTexture1D_20if2")
+emission_curve = SubResource("CurveTexture_y2jdw")
+hue_variation_max = 0.1
+
+[node name="SplatterEffect" type="Node2D"]
+script = ExtResource("1_uxcmw")
+
+[node name="ParticleEffect" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 70
+process_material = SubResource("ParticleProcessMaterial_kay7o")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="SoundEffect" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="finished" from="ParticleEffect" to="." method="_all_effects_finished"]
+[connection signal="finished" from="SoundEffect" to="." method="_all_effects_finished"]

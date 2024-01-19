@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bb5cxmi75alhd"]
+[gd_scene load_steps=13 format=3 uid="uid://bb5cxmi75alhd"]
 
 [ext_resource type="Script" path="res://actors/aliens/mystery_ship.gd" id="1_3gbum"]
 [ext_resource type="Texture2D" uid="uid://dqmkpvx0ia1qv" path="res://actors/aliens/images/mystery_ship.png" id="1_qxpgv"]
 [ext_resource type="AudioStream" uid="uid://k0djyw7ha8bg" path="res://actors/aliens/audio/mystery_ship_loop.wav" id="3_hje1i"]
+[ext_resource type="PackedScene" uid="uid://dxup4ej7rikee" path="res://effects/splatter_effect.tscn" id="4_7qr5x"]
 [ext_resource type="AudioStream" uid="uid://d0agu4nks473p" path="res://actors/common/audio/explosion.wav" id="4_qmedx"]
 [ext_resource type="Script" path="res://core/components/score_component.gd" id="5_k0wia"]
 [ext_resource type="Script" path="res://core/components/health_component.gd" id="5_y50vv"]
@@ -72,8 +73,11 @@ libraries = {
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("3_hje1i")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("4_qmedx")
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="SplatterEffect" parent="Effects" instance=ExtResource("4_7qr5x")]
+splatter_color = Color(1, 0.247059, 0.368627, 1)
+splatter_sound = ExtResource("4_qmedx")
 
 [node name="Components" type="Node" parent="."]
 
@@ -84,12 +88,12 @@ script = ExtResource("5_y50vv")
 script = ExtResource("5_k0wia")
 score_awarded = 250
 
-[node name="HurtComponent" parent="Components" node_paths=PackedStringArray("_health_component", "_collision_shape", "_death_animation_player", "_death_sound") instance=ExtResource("7_e0kmm")]
+[node name="HurtComponent" parent="Components" node_paths=PackedStringArray("_health_component", "_collision_shape", "_death_animation_player", "_death_effect") instance=ExtResource("7_e0kmm")]
 _invulernability_time = 0.1
 _health_component = NodePath("../HealthComponent")
 _collision_shape = NodePath("../../CollisionShape2D")
 _death_animation_player = NodePath("../../AnimationPlayer")
-_death_sound = NodePath("../../Audio/DeathSound")
+_death_effect = NodePath("../../Effects/SplatterEffect")
 
 [node name="RespawnTimer" type="Timer" parent="."]
 wait_time = 5.0

@@ -91,11 +91,15 @@ libraries = {
 "": SubResource("AnimationLibrary_ucfiq")
 }
 
-[node name="DeathSound" parent="Audio" index="1"]
-stream = ExtResource("3_nt5e5")
+[node name="SplatterEffect" parent="Effects" index="0"]
+splatter_color = Color(0.192157, 0.792157, 0.172549, 1)
+splatter_sound = ExtResource("3_nt5e5")
 
 [node name="AttackComponent" parent="Components" index="2"]
 _cooldown_time = 3.5
 
 [node name="ScoreComponent" parent="Components" index="4"]
 score_awarded = 50
+
+[node name="HurtComponent" parent="Components" index="5" node_paths=PackedStringArray("_death_effect")]
+_death_effect = NodePath("../../Effects/SplatterEffect")

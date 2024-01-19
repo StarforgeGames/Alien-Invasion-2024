@@ -14,7 +14,7 @@ signal death_finished()
 @export var _death_animation_player: AnimationPlayer
 @export var _death_animation_name: StringName = "death"
 @export var _death_sound: AudioStreamPlayer2D
-@export var _death_vfx: GPUParticles2D
+@export var _death_effect: SplatterEffect
 
 var is_dying = false
 
@@ -60,17 +60,17 @@ func _on_died() -> void:
 	if _death_sound:
 		_death_sound.play()
 
-	if _death_vfx:
-		_death_vfx.emitting = true
+	if _death_effect:
+		_death_effect.play()
 		
 	if _death_animation_player:
 		await _death_animation_player.animation_finished
-	
+
 	if _death_sound:
 		await _death_sound.finished
-
-	if _death_vfx:
-		await _death_vfx.finished
+	
+	if _death_effect:
+		await _death_effect.finished
 	
 	death_finished.emit()
 

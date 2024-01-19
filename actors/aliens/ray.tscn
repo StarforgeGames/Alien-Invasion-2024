@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cj7wwhpctswa2"]
+[gd_scene load_steps=9 format=3 uid="uid://cj7wwhpctswa2"]
 
 [ext_resource type="PackedScene" uid="uid://dwm2amk7yu3v2" path="res://actors/aliens/alien.tscn" id="1_hicra"]
 [ext_resource type="Texture2D" uid="uid://bafe1hqd1q6ok" path="res://actors/aliens/images/ray.png" id="2_hsxlc"]
@@ -74,41 +74,6 @@ _data = {
 "idle": SubResource("Animation_j224v")
 }
 
-[sub_resource type="Gradient" id="Gradient_rtx8e"]
-offsets = PackedFloat32Array(0.0078125, 0.992188)
-colors = PackedColorArray(0.828086, 0.652003, 1, 1, 0.601464, 0.00190713, 0.804421, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tcfp5"]
-gradient = SubResource("Gradient_rtx8e")
-
-[sub_resource type="Curve" id="Curve_vvmv0"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.19914), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_y2jdw"]
-curve = SubResource("Curve_vvmv0")
-
-[sub_resource type="Curve" id="Curve_2p26e"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.669014, 0.692693), -1.11665, -1.11665, 0, 0, Vector2(1, 0.11533), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_w7a5f"]
-curve = SubResource("Curve_2p26e")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3uulh"]
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
-radial_velocity_max = 150.0
-gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 6.0
-scale_curve = SubResource("CurveTexture_w7a5f")
-color_ramp = SubResource("GradientTexture1D_tcfp5")
-emission_curve = SubResource("CurveTexture_y2jdw")
-hue_variation_max = 0.1
-
 [node name="Ray" groups=["aliens"] instance=ExtResource("1_hicra")]
 
 [node name="Sprite2D" parent="." index="0"]
@@ -127,14 +92,15 @@ libraries = {
 "": SubResource("AnimationLibrary_ucfiq")
 }
 
-[node name="DeathSound" parent="Audio" index="1"]
-stream = ExtResource("3_u0ovc")
-
-[node name="ExplosionVfx" parent="Effects" index="0"]
-process_material = SubResource("ParticleProcessMaterial_3uulh")
+[node name="SplatterEffect" parent="Effects" index="0"]
+splatter_color = Color(0.611765, 0.419608, 1, 1)
+splatter_sound = ExtResource("3_u0ovc")
 
 [node name="AttackComponent" parent="Components" index="2"]
 _cooldown_time = 2.0
 
 [node name="ScoreComponent" parent="Components" index="4"]
 score_awarded = 100
+
+[node name="HurtComponent" parent="Components" index="5" node_paths=PackedStringArray("_death_effect")]
+_death_effect = NodePath("../../Effects/SplatterEffect")
