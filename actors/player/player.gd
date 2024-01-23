@@ -37,13 +37,10 @@ func _physics_process(_delta) -> void:
 func _input(event):
 	if event.is_action_pressed("move_left"):
 		_animation_player.play("tilt_left")
-		print("tilting left")
 	elif event.is_action_pressed("move_right"):
 		_animation_player.play("tilt_right")
-		print("tilting right")
 	elif event.is_action_released("move_left") or event.is_action_released("move_right"):
 		_animation_player.play("RESET")
-		print("tilting reset")
 
 
 func take_damage(damage: float) -> void:
