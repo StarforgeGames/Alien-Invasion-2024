@@ -9,7 +9,9 @@ signal died()
 ## The movement speed of the player.
 @export var _speed: float = 400.0
 
+@onready var _animation_player := $AnimationPlayer as AnimationPlayer
 @onready var _projectile_spawner_component := $Components/ProjectileSpawnerComponent as ProjectileSpawnerComponent
+
 @onready var _attack_component := $Components/AttackComponent as AttackComponent
 @onready var _hurt_component := $Components/HurtComponent as HurtComponent
 
@@ -30,6 +32,18 @@ func _physics_process(_delta) -> void:
 
 	if Input.is_action_pressed("attack"):
 		_attack_component.attack(_muzzle_marker.global_position)
+
+
+func _input(event):
+	if event.is_action_pressed("move_left"):
+		_animation_player.play("tilt_left")
+		print("tilting left")
+	elif event.is_action_pressed("move_right"):
+		_animation_player.play("tilt_right")
+		print("tilting right")
+	elif event.is_action_released("move_left") or event.is_action_released("move_right"):
+		_animation_player.play("RESET")
+		print("tilting reset")
 
 
 func take_damage(damage: float) -> void:

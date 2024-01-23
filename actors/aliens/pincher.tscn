@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://sh6hjli23bgk" path="res://actors/aliens/audio/alien_pincher_death.wav" id="3_huh53"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sak45"]
-radius = 26.0
+radius = 28.0
 height = 78.0
 
 [sub_resource type="Animation" id="Animation_fou42"]
