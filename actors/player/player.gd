@@ -35,6 +35,9 @@ func _physics_process(_delta) -> void:
 
 
 func _input(event):
+	if _hurt_component.is_dying:
+		return
+
 	if event.is_action_pressed("move_left"):
 		_animation_player.play("tilt_left")
 	elif event.is_action_pressed("move_right"):
