@@ -6,6 +6,8 @@ extends Resource
 @export var scene: PackedScene
 ## Path to the sprite to use for visuals.
 @export var sprite: Texture2D
+## The color of the projectile.
+@export var projectile_color: Color
 ## The movement speed of the projectile.
 @export var speed := 1000
 ## The direction in which the projectile will move.

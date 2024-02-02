@@ -25,7 +25,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Fade out the intensity over time
 	_current_shake_strength = lerpf(_current_shake_strength, 0.0, shake_decay_rate * delta)
-	print("Current shake strentgh: " + str(_current_shake_strength))
 
 	# Shake by adjusting camera.offset so we can move the camera around the level via it's position
 	camera.offset = _get_noise_offset(delta)

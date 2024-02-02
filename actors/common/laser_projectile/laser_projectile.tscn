@@ -1,20 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://bliwi4p2x0dfj"]
+[gd_scene load_steps=11 format=3 uid="uid://bliwi4p2x0dfj"]
 
 [ext_resource type="Script" path="res://actors/common/laser_projectile/laser_projectile.gd" id="1_kmss3"]
-[ext_resource type="Texture2D" uid="uid://bm31mipj5k20j" path="res://actors/player/images/pewpew.png" id="2_whbdq"]
+[ext_resource type="Texture2D" uid="uid://byxacqklx56l7" path="res://effects/textures/RPicster/spotlight_7.png" id="3_pvxjn"]
+[ext_resource type="Texture2D" uid="uid://doj2yujvvr8vo" path="res://effects/textures/RPicster/sheets/floaty_32.png" id="3_v46bh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83ydo"]
-size = Vector2(4, 14)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0x2dq"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_4x63x"]
+offsets = PackedFloat32Array(0, 0.359833, 0.702929, 1)
+colors = PackedColorArray(0, 0.619843, 0.979543, 1, 0.189644, 0.349124, 0.525107, 1, 0.585611, 0.242105, 0.282642, 1, 0, 0.952941, 0.921569, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_km2gy"]
+gradient = SubResource("Gradient_4x63x")
+
+[sub_resource type="Curve" id="Curve_7i52g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.782772, 0.608192), -1.49021, -1.49021, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kvfwd"]
+curve = SubResource("Curve_7i52g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mt38o"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 5.0
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+angular_velocity_min = 50.0
+angular_velocity_max = 250.0
+gravity = Vector3(0, 250, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_kvfwd")
+color_ramp = SubResource("GradientTexture1D_km2gy")
+hue_variation_min = -0.02
+hue_variation_max = 0.02
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_influence_max = 0.7
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kow1u"]
+radius = 24.0208
 
 [node name="LaserProjectile" type="Area2D"]
 collision_mask = 6
 script = ExtResource("1_kmss3")
 
+[node name="Effects" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Effects"]
+material = SubResource("CanvasItemMaterial_0x2dq")
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_mt38o")
+texture = ExtResource("3_v46bh")
+preprocess = 1.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_whbdq")
+scale = Vector2(2, 2)
+texture = ExtResource("3_pvxjn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_83ydo")
+shape = SubResource("CircleShape2D_kow1u")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(0.2, 0.7)

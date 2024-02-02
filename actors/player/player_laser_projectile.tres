@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" path="res://actors/common/laser_projectile/projectile_data.gd" id="1_7xut0"]
 [ext_resource type="PackedScene" uid="uid://bliwi4p2x0dfj" path="res://actors/common/laser_projectile/laser_projectile.tscn" id="1_nq3d6"]
-[ext_resource type="Texture2D" uid="uid://bm31mipj5k20j" path="res://actors/player/images/pewpew.png" id="2_f532m"]
+[ext_resource type="Texture2D" uid="uid://daeyvhj1uwdi6" path="res://effects/textures/RPicster/spotlight_8.png" id="3_w2hja"]
 
 [resource]
 script = ExtResource("1_7xut0")
 scene = ExtResource("1_nq3d6")
-sprite = ExtResource("2_f532m")
+sprite = ExtResource("3_w2hja")
+projectile_color = Color(0.411765, 0.756863, 1, 1)
 speed = 1000
 direction = Vector2(0, -1)
 damage = 1.0

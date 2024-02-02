@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dxup4ej7rikee"]
 
 [ext_resource type="Script" path="res://effects/splatter_effect.gd" id="1_uxcmw"]
-[ext_resource type="Texture2D" uid="uid://dk7qaxmj4ei84" path="res://effects/textures/splatter.png" id="2_uruun"]
+[ext_resource type="Texture2D" uid="uid://co2pbttula4bq" path="res://effects/textures/RPicster/effect_4.png" id="2_st0l1"]
 
 [sub_resource type="Gradient" id="Gradient_61wex"]
-offsets = PackedFloat32Array(0.527344, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.694561, 1)
+colors = PackedColorArray(2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_20if2"]
 gradient = SubResource("Gradient_61wex")
@@ -29,7 +29,7 @@ lifetime_randomness = 0.2
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 20.0
-angle_max = 180.0
+angle_max = 360.0
 direction = Vector3(1, 1, 0)
 spread = 180.0
 initial_velocity_min = 150.0
@@ -37,10 +37,11 @@ initial_velocity_max = 300.0
 radial_velocity_max = 150.0
 gravity = Vector3(0, 750, 0)
 scale_min = 0.2
-scale_max = 2.0
+scale_max = 1.5
 scale_curve = SubResource("CurveTexture_w7a5f")
 color_ramp = SubResource("GradientTexture1D_20if2")
 emission_curve = SubResource("CurveTexture_y2jdw")
+hue_variation_min = -0.05
 hue_variation_max = 0.15
 
 [node name="SplatterEffect" type="Node2D"]
@@ -48,9 +49,9 @@ script = ExtResource("1_uxcmw")
 
 [node name="ParticleEffect" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 50
+amount = 75
 process_material = SubResource("ParticleProcessMaterial_kay7o")
-texture = ExtResource("2_uruun")
+texture = ExtResource("2_st0l1")
 lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
