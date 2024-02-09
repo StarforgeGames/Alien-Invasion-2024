@@ -21,6 +21,8 @@ func play() -> void:
 	_particle_effect.emitting = true
 	_sound_effect.play()
 
+	_all_effects_finished()
+
 
 func stop() -> void:
 	_particle_effect.emitting = false
